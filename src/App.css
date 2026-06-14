@@ -44,6 +44,11 @@ body { font-family: Arial, sans-serif; background: #ECF0F1; }
   border: 1px solid #BDC3C7;
   border-radius: 6px;
   font-size: 1em;
+  background: #ffffff;
+  color: #2C3E50;
+}
+.panel-form input::placeholder {
+  color: #95A5A6;
 }
 
 .panel-form h3 {
