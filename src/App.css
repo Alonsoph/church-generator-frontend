@@ -112,3 +112,26 @@ body { font-family: Arial, sans-serif; background: #ECF0F1; }
   text-align: center;
   font-size: 1.1em;
 }
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    height: auto;
+  }
+  .panel-form {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .panel-preview {
+    width: 100%;
+    min-height: 70vh;
+    padding: 12px;
+  }
+  .preview-frame {
+    height: 70vh;
+  }
+  .panel-form h1 {
+    font-size: 1.5em;
+  }
+}
