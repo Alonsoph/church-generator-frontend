@@ -238,12 +238,8 @@ if (paso === 0) {
 
             <iframe title="preview" srcDoc={html} className="preview-frame-grande" />
 
-            <button className="btn-fullscreen" onClick={() => {
-              const ventana = window.open();
-              ventana.document.write(html);
-              ventana.document.close();
-            }}>
-              🔍 Ver a pantalla completa en pestaña nueva
+            <button className="btn-fullscreen" onClick={() => setModalPantallaCompleta(true)}>
+              Ver a pantalla completa
             </button>
 
             <div className="caja-info">
@@ -333,10 +329,21 @@ if (paso === 0) {
               Generar otra web
             </button>
           </div>
-        )}
+)}
       </div>
+
+      {modalPantallaCompleta && (
+        <div className="modal-fullscreen">
+          <div className="modal-barra">
+            <span className="modal-titulo">Vista previa de tu web</span>
+            <button className="modal-cerrar" onClick={() => setModalPantallaCompleta(false)}>
+              ✕ Volver y continuar
+            </button>
+          </div>
+          <iframe title="preview-fullscreen" srcDoc={html} className="modal-iframe" />
+        </div>
+      )}
     </div>
   );
 }
-
 export default App;
