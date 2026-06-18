@@ -65,9 +65,9 @@ function App() {
   );
   const [html, setHtml] = useState('');
   const [sugerencias, setSugerencias] = useState('');
-  const [planSeleccionado, setPlanSeleccionado] = useState(null);
+const [planSeleccionado, setPlanSeleccionado] = useState(null);
+  const [modalPantallaCompleta, setModalPantallaCompleta] = useState(false);
   const [cargando, setCargando] = useState(false);
-
   const toggleFunc = (key) => {
     setFuncs({ ...funcs, [key]: !funcs[key] });
   };
