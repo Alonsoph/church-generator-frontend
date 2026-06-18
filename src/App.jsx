@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Landing from './components/Landing';
 
 const FUNCIONALIDADES = [
   { key: 'horarios_ubicacion', label: 'Horarios y Ubicación' },
@@ -49,7 +50,7 @@ const PLANES = [
 const API_BASE = 'https://church-generator-api-production.up.railway.app/api/iglesias';
 
 function App() {
-  const [paso, setPaso] = useState(1);
+  const [paso, setPaso] = useState(0);
   const [nombre, setNombre] = useState('');
   const [lema, setLema] = useState('');
   const [direccion, setDireccion] = useState('');
@@ -167,6 +168,10 @@ function App() {
   };
 
   const formatoPrecio = (n) => '$' + n.toLocaleString('es-CL');
+
+if (paso === 0) {
+    return <Landing onComenzar={() => setPaso(1)} />;
+  }
 
   return (
     <div className="app">
