@@ -1,7 +1,7 @@
 import './Landing.css';
 
 function Landing({ onComenzar }) {
-  const WHATSAPP = '+79094078955';
+  const WHATSAPP = '+56967236881';
   const whatsappLink = `https://wa.me/${WHATSAPP.replace(/[^0-9]/g, '')}`;
 
   return (
