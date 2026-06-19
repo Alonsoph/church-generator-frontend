@@ -27,10 +27,12 @@ function Landing({ onComenzar }) {
           <button className="landing-btn-primary" onClick={onComenzar}>
             Crear mi web ahora
           </button>
-          <p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
+<p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
         </div>
+        <a href="#como-funciona" className="landing-flecha-abajo" aria-label="Ver más">
+          <span></span>
+        </a>
       </header>
-
       {/* CÓMO FUNCIONA */}
       <section id="como-funciona" className="landing-section">
         <h2>Tres pasos simples</h2>
