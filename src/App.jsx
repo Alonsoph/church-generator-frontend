@@ -63,13 +63,13 @@ const [usarIA, setUsarIA] = useState(true);
   const [funcs, setFuncs] = useState(
     FUNCIONALIDADES.reduce((acc, f) => ({ ...acc, [f.key]: true }), {})
   );
-  const [preferenciasDiseno, setPreferenciasDiseno] = useState({
+const [preferenciasDiseno, setPreferenciasDiseno] = useState({
     estilo: '',
     audiencia: '',
     tono: '',
   });
-  const [html, setHtml] = useState('');
-  const [sugerencias, setSugerencias] = useState('');
+  const [codigoReferencia, setCodigoReferencia] = useState('');
+  const [html, setHtml] = useState('');  const [sugerencias, setSugerencias] = useState('');
   const [planSeleccionado, setPlanSeleccionado] = useState(null);  const [modalPantallaCompleta, setModalPantallaCompleta] = useState(false);
   const [plantillaActual, setPlantillaActual] = useState('');
 const [datosGenerados, setDatosGenerados] = useState(null);
@@ -144,6 +144,7 @@ const [datosGenerados, setDatosGenerados] = useState(null);
           usar_ia: usarIA,
           funcionalidades_activas: funcs,
           preferencias_diseno: preferenciasDiseno,
+          codigo_referencia: codigoReferencia,
         }),
       });
 
@@ -187,6 +188,7 @@ const data = await res.json();
           html_generado: html,
           sugerencias_cliente: sugerencias,
           plan_seleccionado: planSeleccionado,
+          codigo_referencia: codigoReferencia,
         }),
       });
       const data = await res.json();
@@ -286,6 +288,14 @@ if (paso === 0) {
                 </label>
               ))}
             </div>
+
+            <label>¿Te recomendó algún misionero? (opcional)</label>
+            <input 
+              value={codigoReferencia} 
+              onChange={(e) => setCodigoReferencia(e.target.value.toUpperCase())} 
+              placeholder="Ingresa el código del misionero" 
+            />
+            <p className="ayuda-pequena">Si un misionero te recomendó nuestro servicio, ingresa aquí el código que te dio.</p>
 
             <button className="btn-generar" onClick={generar} disabled={cargando || !nombre}>
               {cargando ? 'Generando con IA... (puede tardar 1 minuto)' : 'Generar vista previa con IA'}

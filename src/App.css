@@ -559,3 +559,12 @@ body {
 /* ============ LANDING ============ */
 .landing {
   font-family: 'Inter', -apple-system, sans-serif;
+
+
+  .ayuda-pequena {
+  color: #888;
+  font-size: 0.85em;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
