@@ -59,15 +59,47 @@ function App() {
   const [email, setEmail] = useState('');
   const [logo, setLogo] = useState('');
   const [fotoPrincipal, setFotoPrincipal] = useState('');
-  const [usarIA, setUsarIA] = useState(true);
+const [usarIA, setUsarIA] = useState(true);
   const [funcs, setFuncs] = useState(
     FUNCIONALIDADES.reduce((acc, f) => ({ ...acc, [f.key]: true }), {})
   );
+  const [preferenciasDiseno, setPreferenciasDiseno] = useState({
+    estilo: '',
+    audiencia: '',
+    tono: '',
+  });
   const [html, setHtml] = useState('');
   const [sugerencias, setSugerencias] = useState('');
-const [planSeleccionado, setPlanSeleccionado] = useState(null);
-  const [modalPantallaCompleta, setModalPantallaCompleta] = useState(false);
+  const [planSeleccionado, setPlanSeleccionado] = useState(null);  const [modalPantallaCompleta, setModalPantallaCompleta] = useState(false);
+  const [plantillaActual, setPlantillaActual] = useState('');
+const [datosGenerados, setDatosGenerados] = useState(null);
   const [cargando, setCargando] = useState(false);
+  const cambiarEstilo = async (nuevaPlantilla) => {
+    if (!datosGenerados || nuevaPlantilla === plantillaActual) return;
+    setCargando(true);
+    try {
+      const res = await fetch(`${API_BASE}/cambiar-plantilla`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plantilla: nuevaPlantilla,
+          datos: datosGenerados.datos,
+          contenido: datosGenerados.contenido,
+        }),
+      });
+      const data = await res.json();
+      if (data.exito) {
+        setHtml(data.html);
+        setPlantillaActual(data.plantilla_usada);
+      } else {
+        alert('Error al cambiar estilo: ' + (data.error || ''));
+      }
+    } catch (err) {
+      alert('Error de conexión al cambiar estilo');
+    } finally {
+      setCargando(false);
+    }
+  };
   const toggleFunc = (key) => {
     setFuncs({ ...funcs, [key]: !funcs[key] });
   };
@@ -111,16 +143,18 @@ const [planSeleccionado, setPlanSeleccionado] = useState(null);
           multimedia: { logo, fotoPrincipal },
           usar_ia: usarIA,
           funcionalidades_activas: funcs,
+          preferencias_diseno: preferenciasDiseno,
         }),
       });
 
       clearTimeout(timeoutId);
-      const data = await res.json();
+const data = await res.json();
       if (data.exito) {
         setHtml(data.html);
+        setDatosGenerados(data.datos_generados);
+        setPlantillaActual(data.plantilla_usada);
         setPaso(2);
-      } else {
-        alert('Error al generar la página: ' + (data.error || ''));
+      } else {        alert('Error al generar la página: ' + (data.error || ''));
       }
     } catch (err) {
       if (err.name === 'AbortError') {
@@ -214,12 +248,41 @@ if (paso === 0) {
             <input type="file" accept="image/*" onChange={(e) => manejarImagen(e, setFotoPrincipal)} className="input-file" />
             {fotoPrincipal && <img src={fotoPrincipal} alt="foto principal" className="preview-img" />}
 
+<h3>Estilo de tu web</h3>
+            <p className="ayuda">Estas respuestas nos ayudan a elegir el diseño perfecto para tu iglesia.</p>
+
+            <div className="pregunta-diseno">
+              <label className="pregunta-label">¿Cómo describirías el estilo de tu iglesia?</label>
+              <div className="opciones-diseno">
+                <button type="button" className={preferenciasDiseno.estilo === 'tradicional' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, estilo: 'tradicional'})}>Tradicional</button>
+                <button type="button" className={preferenciasDiseno.estilo === 'contemporanea' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, estilo: 'contemporanea'})}>Contemporánea</button>
+                <button type="button" className={preferenciasDiseno.estilo === 'familiar' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, estilo: 'familiar'})}>Familiar</button>
+              </div>
+            </div>
+
+            <div className="pregunta-diseno">
+              <label className="pregunta-label">¿Cuál es tu audiencia principal?</label>
+              <div className="opciones-diseno">
+                <button type="button" className={preferenciasDiseno.audiencia === 'adultos' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, audiencia: 'adultos'})}>Adultos</button>
+                <button type="button" className={preferenciasDiseno.audiencia === 'jovenes' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, audiencia: 'jovenes'})}>Jóvenes</button>
+                <button type="button" className={preferenciasDiseno.audiencia === 'mixta' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, audiencia: 'mixta'})}>Toda edad</button>
+              </div>
+            </div>
+
+            <div className="pregunta-diseno">
+              <label className="pregunta-label">¿Qué tono prefieres?</label>
+              <div className="opciones-diseno">
+                <button type="button" className={preferenciasDiseno.tono === 'elegante' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, tono: 'elegante'})}>Elegante</button>
+                <button type="button" className={preferenciasDiseno.tono === 'cercano' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, tono: 'cercano'})}>Cercano</button>
+                <button type="button" className={preferenciasDiseno.tono === 'energetico' ? 'opcion activa' : 'opcion'} onClick={() => setPreferenciasDiseno({...preferenciasDiseno, tono: 'energetico'})}>Energético</button>
+              </div>
+            </div>
+
             <h3>¿Qué secciones quieres incluir?</h3>
             <div className="funcs">
               {FUNCIONALIDADES.map((f) => (
                 <label key={f.key} className="check">
-                  <input type="checkbox" checked={funcs[f.key]} onChange={() => toggleFunc(f.key)} />
-                  {f.label}
+                  <input type="checkbox" checked={funcs[f.key]} onChange={() => toggleFunc(f.key)} />                  {f.label}
                 </label>
               ))}
             </div>
@@ -231,13 +294,39 @@ if (paso === 0) {
           </div>
         )}
 
-        {paso === 2 && (
+{paso === 2 && (
           <div className="contenido-paso">
             <h1>Aquí está tu web</h1>
             <p className="intro">Esta es una vista previa. Puedes solicitar cambios antes de comprar.</p>
 
-            <iframe title="preview" srcDoc={html} className="preview-frame-grande" />
+            <div className="selector-estilos">
+              <p className="selector-titulo">¿Quieres probar otro estilo?</p>
+              <div className="botones-estilos">
+                <button 
+                  className={plantillaActual === 'reverente' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('reverente')}
+                  disabled={cargando}
+                >
+                  Reverente
+                </button>
+                <button 
+                  className={plantillaActual === 'contemporanea' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('contemporanea')}
+                  disabled={cargando}
+                >
+                  Contemporánea
+                </button>
+                <button 
+                  className={plantillaActual === 'acogedora' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('acogedora')}
+                  disabled={cargando}
+                >
+                  Acogedora
+                </button>
+              </div>
+            </div>
 
+            <iframe title="preview" srcDoc={html} className="preview-frame-grande" />
             <button className="btn-fullscreen" onClick={() => setModalPantallaCompleta(true)}>
               Ver a pantalla completa
             </button>
