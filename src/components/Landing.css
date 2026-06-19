@@ -489,11 +489,6 @@
   opacity: 1;
 }
 
-@-webkit-keyframes rebote-flecha {
-  0%, 100% { transform: rotate(45deg) translate(0, 0); }
-  50% { transform: rotate(45deg) translate(5px, 5px); }
-}
-
 @keyframes rebote-flecha {
   0%, 100% { transform: rotate(45deg) translate(0, 0); }
   50% { transform: rotate(45deg) translate(5px, 5px); }
