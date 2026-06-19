@@ -523,4 +523,6 @@ body {
 }
 
 .btn-estilo {
-  padding: 10px
+  padding: 10px/* ============ LANDING ============ */
+.landing {
+  font-family: 'Inter', -apple-system, sans-serif;
