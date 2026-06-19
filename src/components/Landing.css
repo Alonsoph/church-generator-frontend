@@ -445,10 +445,6 @@
   }
 }
 /* FLECHA ANIMADA "HAY MÁS ABAJO" */
-@keyframes rebote {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(10px); }
-}
 
 .landing-flecha-abajo {
   position: absolute;
