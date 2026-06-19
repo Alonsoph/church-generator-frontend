@@ -523,6 +523,39 @@ body {
 }
 
 .btn-estilo {
-  padding: 10px/* ============ LANDING ============ */
+  padding: 10px 20px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  color: #555;
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-estilo:hover:not(:disabled) {
+  border-color: #d4a574;
+  color: #1e3a5f;
+}
+
+.btn-estilo.activo {
+  background: #1e3a5f;
+  color: white;
+  border-color: #1e3a5f;
+}
+
+.btn-estilo:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .botones-estilos { flex-direction: column; }
+  .btn-estilo { width: 100%; }
+}
+
+/* ============ LANDING ============ */
 .landing {
   font-family: 'Inter', -apple-system, sans-serif;
