@@ -444,7 +444,52 @@
     padding: 70px 24px;
   }
 }
-/* FLECHA ANIMADA "HAY MÁS ABAJO" */
+/* FLECHA "HAY MÁS ABAJO" */
+.landing-flecha-abajo {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.landing-flecha-abajo span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(45deg);
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.6s ease-in-out;
+  animation: rebote-flecha 2s ease-in-out infinite;
+}
+
+.landing-flecha-abajo:hover span {
+  opacity: 1;
+}
+
+@-webkit-keyframes rebote-flecha {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50% { transform: rotate(45deg) translate(5px, 5px); }
+}
+
+@keyframes rebote-flecha {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50% { transform: rotate(45deg) translate(5px, 5px); }
+}
+
+@media (max-width: 768px) {
+  .landing-flecha-abajo {
+    bottom: 20px;
+  }
+}
 
 .landing-flecha-abajo {
   position: absolute;
