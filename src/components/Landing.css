@@ -481,7 +481,6 @@
   transform: rotate(45deg);
   opacity: 0.9;
   transition: opacity 0.2s;
-  animation: rebote-flecha 2s ease-in-out infinite;
 }
 
 .landing-flecha-abajo:hover span,
@@ -545,10 +544,7 @@
   50% { transform: rotate(45deg) translate(5px, 5px); }
 }
 
-@keyframes rebote-flecha {
-  0%, 100% { transform: rotate(45deg) translate(0, 0); }
-  50% { transform: rotate(45deg) translate(5px, 5px); }
-}
+
 
 @media (max-width: 768px) {
   .landing-flecha-abajo {
