@@ -347,6 +347,13 @@ if (paso === 0) {
                 >
                   Transmisión
                 </button>
+                <button 
+                  className={plantillaActual === 'mision' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('mision')}
+                  disabled={cargando}
+                >
+                  Misión
+                </button>
               </div>
             </div>
 
