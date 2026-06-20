@@ -135,7 +135,7 @@ useEffect(() => {
 
   const timer = setTimeout(async () => {
     try {
-      const res = await fetch(`${API_BASE}/misioneros/validar/${codigoReferencia}`);
+      const res = await fetch(`${API_BASE.replace('/iglesias', '')}/misioneros/validar/${codigoReferencia}`);
       const data = await res.json();
       if (data.exito && data.valido) {
         setValidacionCodigo({ valido: true, nombre: data.nombre });
