@@ -354,6 +354,13 @@ if (paso === 0) {
                 >
                   Misión
                 </button>
+                <button 
+                  className={plantillaActual === 'plaza' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('plaza')}
+                  disabled={cargando}
+                >
+                  Plaza
+                </button>
               </div>
             </div>
 
