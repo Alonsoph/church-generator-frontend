@@ -340,6 +340,13 @@ if (paso === 0) {
                 >
                   Catedral
                 </button>
+                <button 
+                  className={plantillaActual === 'transmision' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('transmision')}
+                  disabled={cargando}
+                >
+                  Transmisión
+                </button>
               </div>
             </div>
 
