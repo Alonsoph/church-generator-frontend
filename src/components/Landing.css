@@ -481,4 +481,18 @@
   color: white;
 }
 
+/* Forzar texto blanco en el plan destacado */
+.landing-plan.landing-plan-destacado h3,
+.landing-plan.landing-plan-destacado .landing-precio,
+.landing-plan.landing-plan-destacado .landing-precio-mes {
+  color: white !important;
+}
 
+.landing-plan.landing-plan-destacado ul li {
+  color: white !important;
+  border-bottom-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.landing-plan.landing-plan-destacado ul li:before {
+  color: #d4a574 !important;
+}
