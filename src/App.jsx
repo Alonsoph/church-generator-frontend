@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Landing from './components/Landing';
 
@@ -69,6 +69,7 @@ const [preferenciasDiseno, setPreferenciasDiseno] = useState({
     tono: '',
   });
   const [codigoReferencia, setCodigoReferencia] = useState('');
+  const [validacionCodigo, setValidacionCodigo] = useState(null);
   const [html, setHtml] = useState('');  const [sugerencias, setSugerencias] = useState('');
   const [planSeleccionado, setPlanSeleccionado] = useState(null);  const [modalPantallaCompleta, setModalPantallaCompleta] = useState(false);
   const [plantillaActual, setPlantillaActual] = useState('');
@@ -125,7 +126,29 @@ const [datosGenerados, setDatosGenerados] = useState(null);
     };
     reader.readAsDataURL(file);
   };
+// Valida el código de misionero contra el backend mientras el pastor lo escribe
+useEffect(() => {
+  if (!codigoReferencia || codigoReferencia.length < 3) {
+    setValidacionCodigo(null);
+    return;
+  }
 
+  const timer = setTimeout(async () => {
+    try {
+      const res = await fetch(`${API_BASE}/misioneros/validar/${codigoReferencia}`);
+      const data = await res.json();
+      if (data.exito && data.valido) {
+        setValidacionCodigo({ valido: true, nombre: data.nombre });
+      } else {
+        setValidacionCodigo({ valido: false });
+      }
+    } catch (err) {
+      setValidacionCodigo(null);
+    }
+  }, 500); // espera 500ms después de dejar de escribir
+
+  return () => clearTimeout(timer);
+}, [codigoReferencia]);
   const generar = async () => {
     setCargando(true);
     try {
@@ -289,14 +312,23 @@ if (paso === 0) {
               ))}
             </div>
 
-            <label>¿Te recomendó algún misionero? (opcional)</label>
-            <input 
-              value={codigoReferencia} 
-              onChange={(e) => setCodigoReferencia(e.target.value.toUpperCase())} 
-              placeholder="Ingresa el código del misionero" 
-            />
-            <p className="ayuda-pequena">Si un misionero te recomendó nuestro servicio, ingresa aquí el código que te dio.</p>
-
+<label>¿Te recomendó algún misionero? (opcional)</label>
+<input 
+  value={codigoReferencia} 
+  onChange={(e) => setCodigoReferencia(e.target.value.toUpperCase())} 
+  placeholder="Ingresa el código del misionero" 
+/>
+{validacionCodigo && validacionCodigo.valido && (
+  <p style={{ color: '#16a34a', fontSize: '0.9em', marginTop: '6px' }}>
+    ✓ Código de {validacionCodigo.nombre}
+  </p>
+)}
+{validacionCodigo && !validacionCodigo.valido && codigoReferencia.length >= 3 && (
+  <p style={{ color: '#dc2626', fontSize: '0.9em', marginTop: '6px' }}>
+    ✗ Código no encontrado
+  </p>
+)}
+<p className="ayuda-pequena">Si un misionero te recomendó nuestro servicio, ingresa aquí el código que te dio.</p>
             <button className="btn-generar" onClick={generar} disabled={cargando || !nombre}>
               {cargando ? 'Generando con IA... (puede tardar 1 minuto)' : 'Generar vista previa con IA'}
             </button>
