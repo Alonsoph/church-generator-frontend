@@ -333,6 +333,13 @@ if (paso === 0) {
                 >
                   Acogedora
                 </button>
+                <button 
+                  className={plantillaActual === 'catedral' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('catedral')}
+                  disabled={cargando}
+                >
+                  Catedral
+                </button>
               </div>
             </div>
 
