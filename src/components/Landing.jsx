@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import './Landing.css';
 
 function Landing({ onComenzar }) {
   const WHATSAPP = '+56967236881';
   const whatsappLink = `https://wa.me/${WHATSAPP.replace(/[^0-9]/g, '')}`;
+
+  useEffect(() => {
+    const flecha = document.querySelector('.landing-flecha-abajo');
+    if (!flecha) return;
+    const interval = setInterval(() => {
+      flecha.classList.toggle('rebote');
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="landing">
@@ -27,12 +37,17 @@ function Landing({ onComenzar }) {
           <button className="landing-btn-primary" onClick={onComenzar}>
             Crear mi web ahora
           </button>
-<p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
+          <p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
         </div>
+
         <a href="#como-funciona" className="landing-flecha-abajo" aria-label="Ver más">
-          <span></span>
+          <span className="landing-flecha-texto">Conoce más</span>
+          <svg className="landing-flecha-icono" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </a>
       </header>
+
       {/* CÓMO FUNCIONA */}
       <section id="como-funciona" className="landing-section">
         <h2>Tres pasos simples</h2>

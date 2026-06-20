@@ -447,45 +447,38 @@
 /* FLECHA "HAY MÁS ABAJO" */
 .landing-flecha-abajo {
   position: absolute;
-  bottom: 40px;
+  bottom: 32px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
   cursor: pointer;
   text-decoration: none;
-  gap: 6px;
-}
-
-.landing-flecha-abajo::before {
-  content: 'Conoce más';
   color: white;
-  font-size: 0.75em;
-  font-weight: 500;
-  opacity: 0.8;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  opacity: 0.75;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.2s ease, transform 1s ease-in-out;
 }
 
-.landing-flecha-abajo span {
-  display: block;
-  width: 16px;
-  height: 16px;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: rotate(45deg);
-  opacity: 0.9;
-  transition: opacity 0.2s;
+.landing-flecha-abajo.rebote {
+  transform: translateX(-50%) translateY(8px);
 }
-
-.landing-flecha-abajo:hover span,
-.landing-flecha-abajo:hover::before {
+.landing-flecha-abajo:hover {
   opacity: 1;
+}
+
+.landing-flecha-texto {
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.landing-flecha-icono {
+  width: 24px;
+  height: 24px;
+  color: white;
 }
 
 
