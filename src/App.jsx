@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Landing from './components/Landing';
+import Admin from './components/Admin';
 
 const FUNCIONALIDADES = [
   { key: 'horarios_ubicacion', label: 'Horarios y Ubicación' },
@@ -506,3 +507,11 @@ if (paso === 0) {
   );
 }
 export default App;
+// Ruta /admin → panel administrativo (no afecta el flujo normal)
+if (typeof window !== 'undefined' && window.location.pathname.startsWith('/admin')) {
+  const Admin = require('./components/Admin').default;
+  if (window.location.pathname.startsWith('/admin')) {
+  return <Admin />;
+}
+  return <Admin />;
+}
