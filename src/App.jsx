@@ -55,7 +55,14 @@ function App() {
   if (window.location.pathname.startsWith('/admin')) {
     return <Admin />;
   }
-  const [paso, setPaso] = useState(0);
+  
+  // Detectar regreso desde Flow después del pago
+  const urlParams = new URLSearchParams(window.location.search);
+  const estadoPago = urlParams.get('pago');
+  const pasoInicial = estadoPago ? 4 : 0;
+  
+  const [paso, setPaso] = useState(pasoInicial);
+  const [resultadoPago, setResultadoPago] = useState(estadoPago);
   const [nombre, setNombre] = useState('');
   const [lema, setLema] = useState('');
   const [direccion, setDireccion] = useState('');
@@ -221,7 +228,23 @@ const data = await res.json();
       });
       const data = await res.json();
       if (data.exito) {
-        setPaso(4);
+        // Crear orden de pago en Flow
+        const pagoRes = await fetch('https://church-generator-api-production.up.railway.app/api/pagos/flow/crear', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            iglesia_id: data.id,
+            plan: planSeleccionado,
+            email: email,
+          }),
+        });
+        const pagoData = await pagoRes.json();
+        if (pagoData.success && pagoData.checkoutUrl) {
+          window.location.href = pagoData.checkoutUrl;
+          return;
+        } else {
+          alert('Error al crear orden de pago: ' + (pagoData.error || ''));
+        }
       } else {
         alert('Error al guardar: ' + (data.mensaje || ''));
       }
@@ -473,24 +496,73 @@ if (paso === 0) {
 
         {paso === 4 && (
           <div className="contenido-paso final">
-            <h1>¡Casi listo!</h1>
-            <div className="resumen-final">
-              <p><strong>Iglesia:</strong> {nombre}</p>
-              <p><strong>Plan elegido:</strong> {PLANES.find(p => p.id === planSeleccionado)?.nombre}</p>
-              <p><strong>WhatsApp:</strong> {whatsapp}</p>
-            </div>
-            <div className="caja-info verde">
-              <p>✅ Tu solicitud fue guardada.</p>
-              <p>📱 En las próximas horas recibirás un mensaje por WhatsApp con:</p>
-              <ul>
-                <li>Instrucciones de pago</li>
-                <li>Tu web final con tus sugerencias aplicadas</li>
-                <li>Tu dominio .cl personalizado</li>
-                <li>Acceso a actualizaciones mensuales</li>
-              </ul>
-            </div>
-            <button className="btn-generar" onClick={() => window.location.reload()}>
-              Generar otra web
+            {resultadoPago === 'exitoso' && (
+              <>
+                <h1>🎉 ¡Pago exitoso!</h1>
+                <div className="caja-info verde">
+                  <p>✅ Recibimos tu pago correctamente.</p>
+                  <p>📱 En las próximas 24 horas recibirás por WhatsApp:</p>
+                  <ul>
+                    <li>Tu web final con tus sugerencias aplicadas</li>
+                    <li>Tu dominio .cl personalizado</li>
+                    <li>Acceso a actualizaciones mensuales</li>
+                  </ul>
+                  <p>🙏 Gracias por confiar en nosotros. Tu pago también apoya el trabajo misionero.</p>
+                </div>
+              </>
+            )}
+            {resultadoPago === 'pendiente' && (
+              <>
+                <h1>⏳ Pago pendiente</h1>
+                <div className="caja-info amarillo">
+                  <p>Tu pago está siendo procesado. Esto es normal con métodos como pago en efectivo o transferencia.</p>
+                  <p>📱 Te avisaremos por WhatsApp en cuanto se confirme.</p>
+                </div>
+              </>
+            )}
+            {resultadoPago === 'fallido' && (
+              <>
+                <h1>❌ El pago no se completó</h1>
+                <div className="caja-info rojo">
+                  <p>El pago fue rechazado o cancelado. Tu solicitud quedó guardada.</p>
+                  <p>📱 Escríbenos por WhatsApp y te ayudamos a completar el pago.</p>
+                </div>
+              </>
+            )}
+            {resultadoPago === 'error' && (
+              <>
+                <h1>⚠️ Algo salió mal</h1>
+                <div className="caja-info rojo">
+                  <p>No pudimos verificar el estado del pago.</p>
+                  <p>📱 Escríbenos por WhatsApp y resolvemos esto contigo.</p>
+                </div>
+              </>
+            )}
+            {!resultadoPago && (
+              <>
+                <h1>¡Casi listo!</h1>
+                <div className="resumen-final">
+                  <p><strong>Iglesia:</strong> {nombre}</p>
+                  <p><strong>Plan elegido:</strong> {PLANES.find(p => p.id === planSeleccionado)?.nombre}</p>
+                  <p><strong>WhatsApp:</strong> {whatsapp}</p>
+                </div>
+                <div className="caja-info verde">
+                  <p>✅ Tu solicitud fue guardada.</p>
+                  <p>📱 En las próximas horas recibirás un mensaje por WhatsApp.</p>
+                </div>
+              </>
+            )}
+            <a 
+              href="https://wa.me/79094078955" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-generar"
+              style={{ display: 'inline-block', textAlign: 'center', textDecoration: 'none', marginRight: '10px' }}
+            >
+              💬 Contactar por WhatsApp
+            </a>
+            <button className="btn-generar" onClick={() => window.location.href = '/'}>
+              Volver al inicio
             </button>
           </div>
 )}
