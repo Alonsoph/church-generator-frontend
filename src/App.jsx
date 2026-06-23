@@ -553,7 +553,7 @@ if (paso === 0) {
               </>
             )}
             <a 
-              href="https://wa.me/79094078955" 
+              href="https://wa.me/56967236881" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn-generar"
