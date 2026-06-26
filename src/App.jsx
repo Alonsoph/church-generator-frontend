@@ -25,7 +25,10 @@ const PLANES = [
     nombre: 'Fe',
     precio_unico: 50000,
     precio_mensual: 12000,
-    secciones: 'Hasta 5 secciones',
+    secciones: 5,
+    dominio: 'Subdominio en tuwebiglesia.cl',
+    fotos: 20,
+    ediciones: 5,
     soporte: 'Soporte por email',
     color: '#5b8def',
   },
@@ -34,7 +37,10 @@ const PLANES = [
     nombre: 'Misión',
     precio_unico: 80000,
     precio_mensual: 19000,
-    secciones: 'Hasta 8 secciones',
+    secciones: 8,
+    dominio: 'Dominio .cl propio',
+    fotos: 40,
+    ediciones: 20,
     soporte: 'Soporte por WhatsApp',
     color: '#2C5AA0',
     destacado: true,
@@ -44,8 +50,11 @@ const PLANES = [
     nombre: 'Impacto',
     precio_unico: 100000,
     precio_mensual: 29000,
-    secciones: 'Las 11 secciones',
-    soporte: 'WhatsApp prioritario + blog actualizable',
+    secciones: 11,
+    dominio: 'Dominio propio',
+    fotos: 60,
+    ediciones: 'Ilimitadas',
+    soporte: 'WhatsApp prioritario + blog',
     color: '#1a3a6a',
   },
 ];
@@ -476,11 +485,11 @@ if (paso === 0) {
                   <div className="precio-unico">{formatoPrecio(p.precio_unico)}</div>
                   <div className="precio-mensual">+ {formatoPrecio(p.precio_mensual)}/mes</div>
                   <ul>
-                    <li>{p.secciones}</li>
+                    <li>{p.secciones} secciones</li>
+                    <li>{p.dominio}</li>
+                    <li>{p.fotos} fotos</li>
+                    <li>{p.ediciones} ediciones/mes</li>
                     <li>{p.soporte}</li>
-                    <li>Dominio .cl incluido</li>
-                    <li>Hosting incluido</li>
-                    <li>Actualizaciones mensuales</li>
                   </ul>
                   <button className="btn-seleccionar" style={{ background: p.color }}>
                     {planSeleccionado === p.id ? '✓ Seleccionado' : 'Seleccionar'}
