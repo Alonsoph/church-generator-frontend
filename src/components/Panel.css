@@ -1,4 +1,12 @@
-/* src/components/Panel.css */
+/* src/components/Panel.css - Estilo TuWebIglesia */
+
+/* ── Variables de diseño ── */
+:root {
+  --panel-azul-primario: #1e3a5f;
+  --panel-azul-gradiente: #2c5aa0;
+  --panel-dorado: #d4a574;
+  --panel-dorado-hover: #c8924f;
+}
 
 /* ── Login ── */
 .panel-login-container {
@@ -6,8 +14,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a2332 0%, #2d3b4e 100%);
+  background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
   padding: 1rem;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 
 .panel-login-card {
@@ -25,7 +34,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #2563eb;
+  background: var(--panel-dorado);
   color: #fff;
   display: flex;
   align-items: center;
@@ -34,8 +43,9 @@
 }
 
 .panel-login-card h1 {
-  font-size: 1.4rem;
-  color: #1a2332;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--panel-azul-primario);
   margin: 0 0 0.25rem;
   font-weight: 700;
 }
@@ -68,12 +78,13 @@
   font-size: 0.95rem;
   transition: border-color 0.2s;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 .panel-login-form input:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--panel-dorado);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
 }
 
 .panel-login-help {
@@ -83,26 +94,34 @@
 }
 
 .panel-login-help a {
-  color: #2563eb;
+  color: var(--panel-dorado);
   text-decoration: none;
+  font-weight: 600;
+}
+
+.panel-login-help a:hover {
+  color: var(--panel-dorado-hover);
 }
 
 /* ── Botones ── */
 .panel-btn-primary {
   width: 100%;
   padding: 0.75rem;
-  background: #2563eb;
+  background: var(--panel-dorado);
   color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s;
+  font-family: inherit;
 }
 
 .panel-btn-primary:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: var(--panel-dorado-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
 }
 
 .panel-btn-primary:disabled {
@@ -119,10 +138,11 @@
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
 }
 
 .panel-btn-logout:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
@@ -130,12 +150,12 @@
 .panel-container {
   min-height: 100vh;
   background: #f1f5f9;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 
 /* ── Header ── */
 .panel-header {
-  background: #1a2332;
+  background: linear-gradient(135deg, var(--panel-azul-primario) 0%, var(--panel-azul-gradiente) 100%);
   color: #fff;
   padding: 1rem 1.5rem;
   display: flex;
@@ -154,7 +174,7 @@
 
 .panel-header-cross {
   font-size: 1.5rem;
-  background: #2563eb;
+  background: var(--panel-dorado);
   width: 38px;
   height: 38px;
   border-radius: 8px;
@@ -165,19 +185,20 @@
 }
 
 .panel-header h1 {
-  font-size: 1.05rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .panel-plan-badge {
   font-size: 0.7rem;
-  background: rgba(37, 99, 235, 0.3);
+  background: rgba(212, 165, 116, 0.25);
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
-  color: #93c5fd;
-  font-weight: 500;
+  color: var(--panel-dorado);
+  font-weight: 600;
 }
 
 /* ── Barra de ediciones ── */
@@ -202,7 +223,7 @@
 
 .panel-ediciones-fill {
   height: 100%;
-  background: #2563eb;
+  background: var(--panel-dorado);
   border-radius: 2px;
   transition: width 0.3s;
 }
@@ -230,16 +251,17 @@
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;
+  font-family: inherit;
 }
 
 .panel-nav-item:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: var(--panel-dorado);
+  color: var(--panel-dorado);
 }
 
 .panel-nav-item.active {
-  background: #2563eb;
-  border-color: #2563eb;
+  background: var(--panel-azul-primario);
+  border-color: var(--panel-azul-primario);
   color: #fff;
 }
 
@@ -255,8 +277,9 @@
 }
 
 .panel-editor h2 {
-  font-size: 1.2rem;
-  color: #1a2332;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--panel-azul-primario);
   margin: 0 0 1.25rem;
   font-weight: 700;
 }
@@ -286,7 +309,7 @@
   border: 1.5px solid #d1d5db;
   border-radius: 8px;
   font-size: 0.9rem;
-  font-family: inherit;
+  font-family: 'Inter', inherit;
   transition: border-color 0.2s;
   box-sizing: border-box;
   background: #fff;
@@ -295,8 +318,8 @@
 .panel-campo input:focus,
 .panel-campo textarea:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--panel-dorado);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
 }
 
 .panel-campo textarea {
@@ -407,9 +430,9 @@
   font-size: 0.9rem;
   font-weight: 500;
   z-index: 1000;
-  
   max-width: 90%;
   text-align: center;
+  font-family: 'Inter', inherit;
 }
 
 .panel-toast-success {
@@ -423,15 +446,14 @@
 }
 
 .panel-toast-warning {
-  background: #d97706;
+  background: var(--panel-dorado);
   color: #fff;
 }
 
 .panel-toast-info {
-  background: #2563eb;
+  background: var(--panel-azul-primario);
   color: #fff;
 }
-
 
 /* ── Mobile ── */
 @media (max-width: 600px) {
@@ -440,7 +462,7 @@
   }
 
   .panel-header h1 {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .panel-nav {
