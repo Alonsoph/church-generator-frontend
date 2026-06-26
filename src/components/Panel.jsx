@@ -106,6 +106,25 @@ const SECCIONES_CONFIG = {
       { clave: 'video_destacado', label: 'URL del video destacado', tipo: 'text', placeholder: 'https://youtube.com/watch?v=...' },
     ]
   },
+  ubicacion: {
+    nombre: 'Ubicación',
+    icono: '📍',
+    campos: [
+      { clave: 'direccion', label: 'Dirección', tipo: 'text', placeholder: 'Ej: Av. Principal 123, Santiago' },
+    ]
+  },
+  donaciones: {
+    nombre: 'Donaciones',
+    icono: '💰',
+    campos: [
+      { clave: 'banco', label: 'Banco', tipo: 'text' },
+      { clave: 'numero_cuenta', label: 'Número de cuenta', tipo: 'text' },
+      { clave: 'tipo_cuenta', label: 'Tipo de cuenta', tipo: 'text', placeholder: 'Ej: Cuenta Corriente, Cuenta de Ahorro' },
+      { clave: 'titular', label: 'Titular de la cuenta', tipo: 'text' },
+      { clave: 'rut', label: 'RUT', tipo: 'text' },
+      { clave: 'email_donaciones', label: 'Email para donaciones', tipo: 'text' },
+    ]
+  },
 };
 
 export default function Panel() {
