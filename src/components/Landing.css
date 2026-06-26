@@ -1,498 +1,398 @@
-/* ============ LANDING ============ */
+/* src/components/Landing.css */
+
 .landing {
-  font-family: 'Inter', -apple-system, sans-serif;
-  color: #2c3e50;
-  background: white;
-  width: 100%;
-  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1a2332;
 }
 
-/* HERO */
+/* ── Hero ── */
 .landing-hero {
-  background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
-  color: white;
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  position: relative;
-}
-.landing-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 60px;
-}
-
-.landing-logo {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.6em;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.landing-nav-links {
-  display: flex;
-  gap: 32px;
-}
-
-.landing-nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  opacity: 0.9;
-  transition: opacity 0.2s;
-}
-
-.landing-nav-links a:hover {
-  opacity: 1;
+  background: linear-gradient(135deg, #1a2332 0%, #2d3b4e 100%);
+  color: #fff;
+  padding: 5rem 2rem 4rem;
+  text-align: center;
 }
 
 .landing-hero-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px 80px;
-  max-width: 800px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
-.landing-hero-content h1 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3.8em;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 24px;
+.landing-hero-tag {
+  display: inline-block;
+  background: rgba(37, 99, 235, 0.25);
+  color: #93c5fd;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
 }
 
-.landing-subtitle {
-  font-size: 1.25em;
+.landing-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.landing-hero p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
-  opacity: 0.95;
-  margin-bottom: 40px;
-  max-width: 600px;
+  margin: 0 0 2rem;
 }
 
-.landing-hero-nota {
-  margin-top: 20px;
-  font-size: 0.9em;
-  opacity: 0.8;
-}
-
-/* BOTONES */
-.landing-btn-primary {
-  background: #d4a574;
-  color: white;
+.landing-btn-hero {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
   border: none;
-  padding: 18px 44px;
-  border-radius: 8px;
-  font-size: 1.1em;
-  font-weight: 600;
+  padding: 0.9rem 2.5rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s;
-  font-family: inherit;
+  transition: background 0.2s, transform 0.15s;
 }
 
-.landing-btn-primary:hover {
-  background: #c8924f;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+.landing-btn-hero:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
 }
 
-.landing-btn-secondary {
-  background: white;
-  color: #1e3a5f;
-  border: 2px solid #1e3a5f;
-  padding: 16px 40px;
-  border-radius: 8px;
-  font-size: 1em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: inherit;
-  width: 100%;
-}
-
-.landing-btn-secondary:hover {
-  background: #1e3a5f;
-  color: white;
-}
-
-/* SECCIONES */
+/* ── Secciones generales ── */
 .landing-section {
-  padding: 100px 40px;
-  max-width: 1200px;
+  padding: 4rem 2rem;
+  max-width: 960px;
   margin: 0 auto;
-  text-align: center;
-}
-
-.landing-section-claro {
-  background: #f4f4f0;
-  max-width: 100%;
-}
-
-.landing-section-claro > * {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .landing-section h2 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 2.6em;
-  color: #1e3a5f;
-  margin-bottom: 14px;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .landing-section-sub {
-  color: #7a8a96;
-  font-size: 1.15em;
-  margin-bottom: 60px;
+  text-align: center;
+  color: #64748b;
+  font-size: 1.05rem;
+  margin: 0 0 2.5rem;
 }
 
-/* PASOS */
+/* ── Cómo funciona ── */
 .landing-pasos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 40px;
+  gap: 2rem;
 }
 
 .landing-paso {
   text-align: center;
-  padding: 20px;
 }
 
-.landing-paso-numero {
-  background: linear-gradient(135deg, #d4a574, #c8924f);
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+.landing-paso-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 1.3rem;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8em;
-  font-weight: 700;
-  margin: 0 auto 20px;
+  margin: 0 auto 1rem;
 }
 
 .landing-paso h3 {
-  font-family: 'Playfair Display', serif;
-  color: #1e3a5f;
-  font-size: 1.4em;
-  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
 }
 
 .landing-paso p {
-  color: #555;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* PLANES */
+/* ── Planes ── */
+.landing-planes-section {
+  max-width: 1060px;
+}
+
 .landing-planes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
+  gap: 1.25rem;
+  align-items: start;
 }
 
 .landing-plan {
-  background: white;
-  border: 2px solid #e8e4d8;
+  background: #fff;
+  border: 2px solid #e2e8f0;
   border-radius: 16px;
-  padding: 40px 28px;
+  padding: 2rem 1.5rem 1.5rem;
   position: relative;
-  transition: all 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .landing-plan:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
-.landing-plan-destacado {
-  border-color: #1e3a5f;
-  border-width: 3px;
-  background: #1e3a5f;
-  color: white;
+.landing-plan-popular {
+  border-color: #2563eb;
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.15);
 }
 
-.landing-plan-destacado h3,
-.landing-plan-destacado .landing-precio {
-  color: white;
+.landing-plan-popular:hover {
+  border-color: #2563eb;
+  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.2);
 }
 
-.landing-plan-destacado ul li {
-  color: rgba(255,255,255,0.95);
-  border-bottom-color: rgba(255,255,255,0.15);
-}
-
-.landing-badge {
+.landing-plan-badge {
   position: absolute;
-  top: -14px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: #d4a574;
-  color: white;
-  padding: 6px 20px;
-  border-radius: 14px;
-  font-size: 0.8em;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.75rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
-.landing-plan h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8em;
-  color: #1e3a5f;
-  margin-bottom: 16px;
+.landing-plan-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.landing-precio {
-  font-size: 2.4em;
+.landing-plan-header h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+  color: #1a2332;
+}
+
+.landing-plan-precio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.landing-plan-setup {
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #1e3a5f;
-  margin-bottom: 4px;
+  color: #475569;
 }
 
-.landing-precio-mes {
-  color: #7a8a96;
-  font-size: 1em;
-  margin-bottom: 30px;
+.landing-plan-sep {
+  font-size: 0.75rem;
+  color: #94a3b8;
 }
 
-.landing-plan-destacado .landing-precio-mes {
-  color: rgba(255,255,255,0.85);
+.landing-plan-mensual {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a2332;
 }
 
-.landing-plan ul {
+.landing-plan-mensual small {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.landing-plan-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 30px;
-  text-align: left;
+  margin: 0 0 1.5rem;
 }
 
-.landing-plan ul li {
-  padding: 10px 0;
-  color: #555;
-  border-bottom: 1px solid #f0ebe0;
-  font-size: 0.95em;
+.landing-plan-features li {
+  padding: 0.5rem 0;
+  font-size: 0.88rem;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  line-height: 1.4;
 }
 
-.landing-plan ul li:before {
-  content: "✓  ";
-  color: #d4a574;
+.landing-plan-features li:last-child {
+  border-bottom: none;
+}
+
+.landing-plan-features li strong {
+  color: #1a2332;
+  font-weight: 600;
+}
+
+.landing-btn-plan {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  border-radius: 10px;
+  font-size: 0.95rem;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.landing-plan-destacado ul li:before {
-  color: #d4a574;
+.landing-btn-plan:hover {
+  background: #eff6ff;
 }
 
-/* MISIÓN */
-.landing-section-mision {
-  background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
-  color: white;
-  max-width: 100%;
-  padding: 120px 40px;
+.landing-btn-popular {
+  background: #2563eb;
+  color: #fff;
 }
 
-.landing-mision-content {
+.landing-btn-popular:hover {
+  background: #1d4ed8;
+}
+
+.landing-planes-nota {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+/* ── Misión ── */
+.landing-mision {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-mision p {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+/* ── CTA final ── */
+.landing-cta-final {
+  background: #f8fafc;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.landing-cta-final h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+}
+
+.landing-cta-final p {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin: 0 0 2rem;
+}
+
+/* ── Footer ── */
+.landing-footer {
+  background: #1a2332;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2.5rem 2rem;
+}
+
+.landing-footer-content {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
-.landing-section-mision h2 {
-  color: white;
-  font-size: 2.6em;
-  margin-bottom: 30px;
+.landing-footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
 }
 
-.landing-mision-texto {
-  font-size: 1.2em;
-  line-height: 1.8;
-  margin-bottom: 24px;
-  opacity: 0.95;
+.landing-footer-logo {
+  font-size: 1.3rem;
 }
 
-.landing-mision-destacado {
-  font-size: 1.3em;
-  line-height: 1.7;
-  font-style: italic;
-  padding: 30px 40px;
-  background: rgba(212, 165, 116, 0.15);
-  border-left: 4px solid #d4a574;
-  border-radius: 8px;
-  margin: 30px 0;
-  text-align: left;
+.landing-footer-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
 }
 
-/* CTA FINAL */
-.landing-cta-final {
-  background: #f4f4f0;
-  max-width: 100%;
-  padding: 100px 40px;
-}
-
-.landing-cta-final h2 {
-  font-size: 2.4em;
-}
-
-.landing-cta-final p {
-  font-size: 1.15em;
-  color: #555;
-  margin-bottom: 40px;
-}
-
-/* FOOTER */
-.landing-footer {
-  background: #1a2a3a;
-  color: white;
-  padding: 60px 40px;
-  text-align: center;
-}
-
-.landing-footer-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.landing-footer h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6em;
-  margin-bottom: 12px;
-}
-
-.landing-footer p {
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
-
-.landing-whatsapp {
-  display: inline-block;
-  background: #25D366;
-  color: white;
-  padding: 14px 32px;
-  border-radius: 8px;
+.landing-footer-links a {
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  font-weight: 600;
-  margin: 20px 0;
-  transition: background 0.2s;
+  font-size: 0.85rem;
+  transition: color 0.2s;
 }
 
-.landing-whatsapp:hover {
-  background: #1da851;
+.landing-footer-links a:hover {
+  color: #fff;
 }
 
 .landing-footer-copy {
-  margin-top: 30px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.85em;
-  opacity: 0.6;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
 }
 
-/* RESPONSIVO */
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  .landing-nav {
-    padding: 18px 24px;
+  .landing-hero {
+    padding: 3.5rem 1.5rem 3rem;
   }
 
-  .landing-nav-links {
-    display: none;
+  .landing-hero h1 {
+    font-size: 1.8rem;
   }
 
-  .landing-hero-content h1 {
-    font-size: 2.4em;
+  .landing-hero p {
+    font-size: 0.95rem;
   }
 
-  .landing-subtitle {
-    font-size: 1.05em;
+  .landing-pasos {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
-  .landing-section {
-    padding: 60px 24px;
+  .landing-planes {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .landing-plan-popular {
+    order: -1;
   }
 
   .landing-section h2 {
-    font-size: 2em;
+    font-size: 1.5rem;
   }
 
-  .landing-pasos,
-  .landing-planes {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .landing-cta-final h2 {
+    font-size: 1.5rem;
   }
-
-  .landing-section-mision {
-    padding: 70px 24px;
-  }
-
-  .landing-mision-destacado {
-    padding: 24px;
-  }
-
-  .landing-cta-final {
-    padding: 70px 24px;
-  }
-}
-/* FLECHA "HAY MÁS ABAJO" */
-.landing-flecha-abajo {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-  opacity: 0.75;
-  transform: translateX(-50%) translateY(0);
-  transition: opacity 0.2s ease, transform 1s ease-in-out;
-}
-
-.landing-flecha-abajo.rebote {
-  transform: translateX(-50%) translateY(8px);
-}
-.landing-flecha-abajo:hover {
-  opacity: 1;
-}
-
-.landing-flecha-texto {
-  font-size: 0.72em;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.landing-flecha-icono {
-  width: 24px;
-  height: 24px;
-  color: white;
-}
-
-/* Forzar texto blanco en el plan destacado */
-.landing-plan.landing-plan-destacado h3,
-.landing-plan.landing-plan-destacado .landing-precio,
-.landing-plan.landing-plan-destacado .landing-precio-mes {
-  color: white !important;
-}
-
-.landing-plan.landing-plan-destacado ul li {
-  color: white !important;
-  border-bottom-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-.landing-plan.landing-plan-destacado ul li:before {
-  color: #d4a574 !important;
 }

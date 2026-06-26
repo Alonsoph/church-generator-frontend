@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Admin from './components/Admin';
 import Landing from './components/Landing';
+import Panel from './components/Panel';
 
 const FUNCIONALIDADES = [
   { key: 'horarios_ubicacion', label: 'Horarios y Ubicación' },
@@ -52,6 +53,9 @@ const PLANES = [
 const API_BASE = 'https://church-generator-api-production.up.railway.app/api/iglesias';
 
 function App() {
+  if (window.location.pathname === '/panel') {
+  return <Panel />;
+}
   if (window.location.pathname.startsWith('/admin')) {
     return <Admin />;
   }
