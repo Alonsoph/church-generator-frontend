@@ -1,6 +1,5 @@
 // src/components/Panel.jsx
 import { useState, useEffect, useCallback } from 'react';
-import './Panel.css';
 
 const API = 'https://church-generator-api-production.up.railway.app';
 
