@@ -496,3 +496,13 @@
 .landing-plan.landing-plan-destacado ul li:before {
   color: #d4a574 !important;
 }
+
+/* Nota adicional sobre hosting y pago mensual */
+.landing-section-nota {
+  font-size: 0.95em;
+  color: #666;
+  margin-top: -40px;
+  margin-bottom: 50px;
+  font-weight: 500;
+}
+

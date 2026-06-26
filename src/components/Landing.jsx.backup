@@ -76,7 +76,6 @@ function Landing({ onComenzar }) {
       <section id="planes" className="landing-section landing-section-claro">
         <h2>Planes pensados para iglesias</h2>
         <p className="landing-section-sub">Elige el que mejor se ajusta a tu comunidad</p>
-        <p className="landing-section-nota">Todos incluyen hosting · Pago mensual · Cancela cuando quieras</p>
 
         <div className="landing-planes">
           <div className="landing-plan">
@@ -85,11 +84,10 @@ function Landing({ onComenzar }) {
             <div className="landing-precio-mes">+ $12.000/mes</div>
             <ul>
               <li>Hasta 5 secciones</li>
-              <li>Subdominio en tuwebiglesia.cl</li>
-              <li>Hasta 20 fotos</li>
-              <li>5 ediciones mensuales</li>
-              <li>SEO básico</li>
+              <li>Dominio .cl incluido</li>
               <li>Hosting incluido</li>
+              <li>Soporte por email</li>
+              <li>Actualizaciones mensuales</li>
             </ul>
             <button className="landing-btn-secondary" onClick={onComenzar}>Elegir Fe</button>
           </div>
@@ -101,11 +99,10 @@ function Landing({ onComenzar }) {
             <div className="landing-precio-mes">+ $19.000/mes</div>
             <ul>
               <li>Hasta 8 secciones</li>
-              <li>Dominio .cl propio</li>
-              <li>Hasta 40 fotos</li>
-              <li>20 ediciones mensuales</li>
-              <li>SEO optimizado</li>
+              <li>Dominio .cl incluido</li>
               <li>Hosting incluido</li>
+              <li>Soporte por WhatsApp</li>
+              <li>Actualizaciones mensuales</li>
             </ul>
             <button className="landing-btn-primary" onClick={onComenzar}>Elegir Misión</button>
           </div>
@@ -116,11 +113,10 @@ function Landing({ onComenzar }) {
             <div className="landing-precio-mes">+ $29.000/mes</div>
             <ul>
               <li>Las 11 secciones</li>
-              <li>Dominio propio</li>
-              <li>Hasta 60 fotos</li>
-              <li>Ediciones ilimitadas</li>
-              <li>SEO premium</li>
+              <li>Dominio .cl incluido</li>
               <li>Hosting incluido</li>
+              <li>WhatsApp prioritario</li>
+              <li>Blog actualizable</li>
             </ul>
             <button className="landing-btn-secondary" onClick={onComenzar}>Elegir Impacto</button>
           </div>
