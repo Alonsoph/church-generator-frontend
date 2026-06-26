@@ -1,178 +1,172 @@
-// src/components/Landing.jsx
-// Landing actualizada con planes diferenciados + link al panel de pastores
+import { useEffect } from 'react';
 import './Landing.css';
 
-export default function Landing({ onComenzar }) {
-  const whatsapp = '56967236881';
+function Landing({ onComenzar }) {
+  const WHATSAPP = '+56967236881';
+  const whatsappLink = `https://wa.me/${WHATSAPP.replace(/[^0-9]/g, '')}`;
+
+  useEffect(() => {
+    const flecha = document.querySelector('.landing-flecha-abajo');
+    if (!flecha) return;
+    const interval = setInterval(() => {
+      flecha.classList.toggle('rebote');
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="landing">
-      {/* ── HERO ── */}
-      <section className="landing-hero">
+      {/* HERO */}
+      <header className="landing-hero">
+        <nav className="landing-nav">
+          <div className="landing-logo">TuWebIglesia</div>
+          <div className="landing-nav-links">
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#planes">Planes</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+          </div>
+        </nav>
+
         <div className="landing-hero-content">
-          <span className="landing-hero-tag">Para iglesias evangélicas en Chile</span>
           <h1>Tu iglesia merece estar en línea</h1>
-          <p>
-            Creamos la página web profesional de tu iglesia en menos de 24 horas.
-            Sin complicaciones técnicas. Con el corazón puesto en la misión.
+          <p className="landing-subtitle">
+            Creamos webs profesionales para iglesias evangélicas en menos de 24 horas.
+            Sin complicaciones técnicas, sin contratos largos.
           </p>
-          <button className="landing-btn-hero" onClick={onComenzar}>
+          <button className="landing-btn-primary" onClick={onComenzar}>
             Crear mi web ahora
           </button>
+          <p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
         </div>
-      </section>
 
-      {/* ── CÓMO FUNCIONA ── */}
-      <section className="landing-section" id="como-funciona">
-        <h2>¿Cómo funciona?</h2>
-        <p className="landing-section-sub">Tres pasos simples para tener la web de tu iglesia</p>
+        <a href="#como-funciona" className="landing-flecha-abajo" aria-label="Ver más">
+          <span className="landing-flecha-texto">Conoce más</span>
+          <svg className="landing-flecha-icono" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </a>
+      </header>
+
+      {/* CÓMO FUNCIONA */}
+      <section id="como-funciona" className="landing-section">
+        <h2>Tres pasos simples</h2>
+        <p className="landing-section-sub">Tu web lista hoy mismo</p>
+
         <div className="landing-pasos">
           <div className="landing-paso">
-            <div className="landing-paso-num">1</div>
-            <h3>Cuéntanos de tu iglesia</h3>
-            <p>Llena un formulario con los datos de tu congregación: nombre, horarios, ministerios y más.</p>
+            <div className="landing-paso-numero">1</div>
+            <h3>Cuéntanos sobre tu iglesia</h3>
+            <p>Completa un formulario simple con los datos básicos de tu congregación.</p>
           </div>
           <div className="landing-paso">
-            <div className="landing-paso-num">2</div>
-            <h3>Generamos tu web con IA</h3>
-            <p>Nuestra inteligencia artificial crea una página profesional y personalizada en minutos.</p>
+            <div className="landing-paso-numero">2</div>
+            <h3>Mira tu web al instante</h3>
+            <p>Nuestra IA genera una vista previa profesional en segundos. Pídenos cambios si quieres.</p>
           </div>
           <div className="landing-paso">
-            <div className="landing-paso-num">3</div>
-            <h3>Tu web queda lista</h3>
-            <p>Revisas la vista previa, apruebas, y en menos de 24 horas tu iglesia está en internet.</p>
+            <div className="landing-paso-numero">3</div>
+            <h3>Aprueba y publica</h3>
+            <p>Elige tu plan, recibe tu dominio .cl y comienza a ministrar en línea.</p>
           </div>
         </div>
       </section>
 
-      {/* ── PLANES ── */}
-      <section className="landing-section landing-planes-section" id="planes">
-        <h2>Planes para cada iglesia</h2>
-        <p className="landing-section-sub">
-          Elige el plan que mejor se adapte a las necesidades de tu congregación
-        </p>
+      {/* PLANES */}
+      <section id="planes" className="landing-section landing-section-claro">
+        <h2>Planes pensados para iglesias</h2>
+        <p className="landing-section-sub">Elige el que mejor se ajusta a tu comunidad</p>
+
         <div className="landing-planes">
-          {/* Plan Fe */}
           <div className="landing-plan">
-            <div className="landing-plan-header">
-              <h3>Fe</h3>
-              <div className="landing-plan-precio">
-                <span className="landing-plan-setup">$50.000</span>
-                <span className="landing-plan-sep">pago único +</span>
-                <span className="landing-plan-mensual">$12.000<small>/mes</small></span>
-              </div>
-            </div>
-            <ul className="landing-plan-features">
-              <li>Hasta 5 secciones en tu web</li>
-              <li>Subdominio tuwebiglesia.cl</li>
-              <li>Hasta 20 fotos en galería</li>
-              <li>5 ediciones mensuales desde tu panel</li>
-              <li>Posicionamiento básico en Google</li>
-              <li>Hosting y SSL incluidos</li>
+            <h3>Fe</h3>
+            <div className="landing-precio">$50.000</div>
+            <div className="landing-precio-mes">+ $12.000/mes</div>
+            <ul>
+              <li>Hasta 5 secciones</li>
+              <li>Dominio .cl incluido</li>
+              <li>Hosting incluido</li>
+              <li>Soporte por email</li>
+              <li>Actualizaciones mensuales</li>
             </ul>
-            <button className="landing-btn-plan" onClick={onComenzar}>
-              Comenzar
-            </button>
+            <button className="landing-btn-secondary" onClick={onComenzar}>Elegir Fe</button>
           </div>
 
-          {/* Plan Misión */}
-          <div className="landing-plan landing-plan-popular">
-            <div className="landing-plan-badge">Más popular</div>
-            <div className="landing-plan-header">
-              <h3>Misión</h3>
-              <div className="landing-plan-precio">
-                <span className="landing-plan-setup">$80.000</span>
-                <span className="landing-plan-sep">pago único +</span>
-                <span className="landing-plan-mensual">$19.000<small>/mes</small></span>
-              </div>
-            </div>
-            <ul className="landing-plan-features">
-              <li><strong>Hasta 8 secciones</strong> en tu web</li>
-              <li><strong>Dominio .cl propio</strong> para tu iglesia</li>
-              <li>Hasta 40 fotos en galería</li>
-              <li>20 ediciones mensuales desde tu panel</li>
-              <li>Preview profesional en WhatsApp</li>
-              <li>Hosting y SSL incluidos</li>
+          <div className="landing-plan landing-plan-destacado">
+            <div className="landing-badge">Más popular</div>
+            <h3>Misión</h3>
+            <div className="landing-precio">$80.000</div>
+            <div className="landing-precio-mes">+ $19.000/mes</div>
+            <ul>
+              <li>Hasta 8 secciones</li>
+              <li>Dominio .cl incluido</li>
+              <li>Hosting incluido</li>
+              <li>Soporte por WhatsApp</li>
+              <li>Actualizaciones mensuales</li>
             </ul>
-            <button className="landing-btn-plan landing-btn-popular" onClick={onComenzar}>
-              Comenzar
-            </button>
+            <button className="landing-btn-primary" onClick={onComenzar}>Elegir Misión</button>
           </div>
 
-          {/* Plan Impacto */}
           <div className="landing-plan">
-            <div className="landing-plan-header">
-              <h3>Impacto</h3>
-              <div className="landing-plan-precio">
-                <span className="landing-plan-setup">$100.000</span>
-                <span className="landing-plan-sep">pago único +</span>
-                <span className="landing-plan-mensual">$29.000<small>/mes</small></span>
-              </div>
-            </div>
-            <ul className="landing-plan-features">
-              <li><strong>Las 11 secciones</strong> completas</li>
-              <li><strong>Dominio .cl propio</strong> para tu iglesia</li>
-              <li>Hasta 60 fotos en galería</li>
-              <li><strong>Ediciones ilimitadas</strong> desde tu panel</li>
-              <li>Aparece destacado en Google</li>
-              <li>Hosting y SSL incluidos</li>
+            <h3>Impacto</h3>
+            <div className="landing-precio">$100.000</div>
+            <div className="landing-precio-mes">+ $29.000/mes</div>
+            <ul>
+              <li>Las 11 secciones</li>
+              <li>Dominio .cl incluido</li>
+              <li>Hosting incluido</li>
+              <li>WhatsApp prioritario</li>
+              <li>Blog actualizable</li>
             </ul>
-            <button className="landing-btn-plan" onClick={onComenzar}>
-              Comenzar
-            </button>
+            <button className="landing-btn-secondary" onClick={onComenzar}>Elegir Impacto</button>
           </div>
         </div>
-        <p className="landing-planes-nota">
-          Todos los planes incluyen acceso al panel de administración donde puedes editar textos, fotos y horarios tú mismo.
-        </p>
       </section>
 
-      {/* ── QUIÉNES SOMOS ── */}
-      <section className="landing-section" id="mision">
-        <h2>Tu pago sostiene una misión</h2>
-        <div className="landing-mision">
-          <p>
-            Somos un equipo de misioneros que usamos la tecnología para servir
-            al cuerpo de Cristo. Cada iglesia que se une a TuWebIglesia está
-            siendo parte activa de la obra misionera.
+      {/* NOSOTROS - MISIÓN */}
+      <section id="nosotros" className="landing-section landing-section-mision">
+        <div className="landing-mision-content">
+          <h2>Más que un servicio: una misión</h2>
+          <p className="landing-mision-texto">
+            Somos un equipo de misioneros sirviendo en el campo misionero.
+            Creamos TuWebIglesia con un propósito claro: que cada iglesia, sin importar su tamaño,
+            pueda tener presencia profesional en línea para alcanzar más almas.
           </p>
-          <p>
-            Tus pagos no van a una empresa tecnológica: sostienen directamente el
-            trabajo de misioneros en el campo. Estás invirtiendo en la misión de Dios.
+          <p className="landing-mision-destacado">
+            Los ingresos de este servicio sostienen nuestro trabajo misionero
+            y nos permiten seguir expandiendo el Reino de Dios.
+          </p>
+          <p className="landing-mision-texto">
+            Cuando contratas TuWebIglesia, no solo obtienes una web de calidad —
+            <strong> estás siendo parte de La misión</strong>.
           </p>
         </div>
       </section>
 
-      {/* ── CTA FINAL ── */}
-      <section className="landing-cta-final">
-        <h2>¿Listo para dar el paso?</h2>
-        <p>Tu iglesia puede tener su web profesional hoy mismo.</p>
-        <button className="landing-btn-hero" onClick={onComenzar}>
+      {/* CTA FINAL */}
+      <section className="landing-section landing-cta-final">
+        <h2>¿Listo para llevar tu iglesia en línea?</h2>
+        <p>Empieza gratis y mira cómo se vería tu web en segundos.</p>
+        <button className="landing-btn-primary" onClick={onComenzar}>
           Crear mi web ahora
         </button>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="landing-footer">
+      {/* FOOTER */}
+      <footer id="contacto" className="landing-footer">
         <div className="landing-footer-content">
-          <div className="landing-footer-brand">
-            <span className="landing-footer-logo">✝</span>
-            <span>TuWebIglesia</span>
-          </div>
-          <div className="landing-footer-links">
-            <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer">
-              WhatsApp
-            </a>
-            <a href="mailto:contacto@tuwebiglesia.cl">Contacto</a>
-            <a href="/panel" onClick={e => { e.preventDefault(); window.location.href = '/panel'; }}>
-              Panel de pastores
-            </a>
-          </div>
+          <h3>TuWebIglesia</h3>
+          <p>Webs profesionales para iglesias evangélicas en Chile</p>
+          <a href={whatsappLink} className="landing-whatsapp">
+            Escríbenos por WhatsApp
+          </a>
           <p className="landing-footer-copy">
-            © {new Date().getFullYear()} TuWebIglesia — Sirviendo con tecnología y fe
+            © {new Date().getFullYear()} TuWebIglesia · Un servicio para el Reino
           </p>
         </div>
       </footer>
     </div>
   );
 }
+
+export default Landing;

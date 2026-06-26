@@ -496,28 +496,3 @@
 .landing-plan.landing-plan-destacado ul li:before {
   color: #d4a574 !important;
 }
-
-.landing-planes-nota {
-  text-align: center;
-  color: #95a5a6;
-  font-size: 0.85em;
-  margin-top: 24px;
-}
-
-.landing-footer-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.landing-panel-link {
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  font-size: 0.85em;
-}
-
-.landing-panel-link:hover {
-  color: white;
-}
