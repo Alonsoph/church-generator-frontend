@@ -25,11 +25,12 @@ const PLANES = [
     nombre: 'Fe',
     precio_unico: 50000,
     precio_mensual: 12000,
-    secciones: 5,
+    secciones: 'Hasta 5 secciones',
     dominio: 'Subdominio en tuwebiglesia.cl',
-    fotos: 20,
-    ediciones: 5,
-    soporte: 'Soporte por email',
+    fotos: 'Hasta 20 fotos',
+    ediciones: '5 ediciones mensuales',
+    seo: 'SEO básico',
+    hosting: 'Hosting incluido',
     color: '#5b8def',
   },
   {
@@ -37,11 +38,12 @@ const PLANES = [
     nombre: 'Misión',
     precio_unico: 80000,
     precio_mensual: 19000,
-    secciones: 8,
+    secciones: 'Hasta 8 secciones',
     dominio: 'Dominio .cl propio',
-    fotos: 40,
-    ediciones: 20,
-    soporte: 'Soporte por WhatsApp',
+    fotos: 'Hasta 40 fotos',
+    ediciones: '20 ediciones mensuales',
+    seo: 'SEO optimizado',
+    hosting: 'Hosting incluido',
     color: '#2C5AA0',
     destacado: true,
   },
@@ -50,11 +52,12 @@ const PLANES = [
     nombre: 'Impacto',
     precio_unico: 100000,
     precio_mensual: 29000,
-    secciones: 11,
+    secciones: 'Las 11 secciones',
     dominio: 'Dominio propio',
-    fotos: 60,
-    ediciones: 'Ilimitadas',
-    soporte: 'WhatsApp prioritario + blog',
+    fotos: 'Hasta 60 fotos',
+    ediciones: 'Ediciones ilimitadas',
+    seo: 'SEO premium',
+    hosting: 'Hosting incluido',
     color: '#1a3a6a',
   },
 ];
@@ -485,11 +488,12 @@ if (paso === 0) {
                   <div className="precio-unico">{formatoPrecio(p.precio_unico)}</div>
                   <div className="precio-mensual">+ {formatoPrecio(p.precio_mensual)}/mes</div>
                   <ul>
-                    <li>{p.secciones} secciones</li>
+                    <li>{p.secciones}</li>
                     <li>{p.dominio}</li>
-                    <li>{p.fotos} fotos</li>
-                    <li>{p.ediciones} ediciones/mes</li>
-                    <li>{p.soporte}</li>
+                    <li>{p.fotos}</li>
+                    <li>{p.ediciones}</li>
+                    <li>{p.seo}</li>
+                    <li>{p.hosting}</li>
                   </ul>
                   <button className="btn-seleccionar" style={{ background: p.color }}>
                     {planSeleccionado === p.id ? '✓ Seleccionado' : 'Seleccionar'}
