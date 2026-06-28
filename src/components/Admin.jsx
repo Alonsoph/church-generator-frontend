@@ -220,7 +220,7 @@ export default function Admin() {
   // PANEL
   // ============================================================
   return (
-    <div className="admin-wrap">
+    <div className="landing"><div className="admin-wrap">
       <header className="admin-header">
         <h1>Panel TuWebIglesia</h1>
         <button className="admin-logout" onClick={logout}>Cerrar sesión</button>
@@ -482,6 +482,6 @@ export default function Admin() {
           </div>
         </div>
       )}
-    </div>
+    </div></div>
   );
 }
