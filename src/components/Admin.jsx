@@ -176,6 +176,26 @@ export default function Admin() {
   // ============================================================
   // LOGIN
   // ============================================================
+  async function crearAccesoPastor(iglesiaId, nombreIglesia) {
+    const usuario = prompt('Usuario para ' + nombreIglesia + ':');
+    if (!usuario) return;
+    const password = prompt('Contraseña:');
+    if (!password) return;
+    try {
+      const r = await fetch(API_ROOT + '/panel/crear-acceso', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': token },
+        body: JSON.stringify({ iglesia_id: iglesiaId, usuario, password }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        alert('Acceso creado para ' + usuario + '. El pastor puede entrar en tuwebiglesia.cl/panel');
+      } else {
+        alert('Error: ' + (data.error || 'No se pudo crear'));
+      }
+    } catch { alert('Error de conexion'); }
+  }
+
   if (!logueado) {
     return (
       <div className="admin-login-wrap">
@@ -372,6 +392,13 @@ export default function Admin() {
                         onClick={() => { setIglesiaObs(i); setTextoObs(''); }}
                       >
                         + Nota
+                      </button>
+                      <button
+                        className="admin-btn-mini"
+                        style={{ marginLeft: '4px' }}
+                        onClick={() => crearAccesoPastor(i.id, i.nombre_iglesia)}
+                      >
+                        🔑 Acceso
                       </button>
                     </td>
                   </tr>

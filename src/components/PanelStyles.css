@@ -496,3 +496,64 @@
     font-size: 1rem;
   }
 }
+
+/* ── Nav item inactive ── */
+.panel-nav-item.inactive {
+  opacity: 0.6;
+}
+
+/* ── Preview img dentro del editor ── */
+.panel-campo-preview-img {
+  display: block;
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  border: 1px solid #e2e8f0;
+  object-fit: cover;
+}
+
+/* ── Saving indicator ── */
+.panel-campo-saving {
+  font-size: 0.7rem;
+  color: var(--panel-dorado);
+  font-style: italic;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* ── Botones pequeños para subir/generar ── */
+.panel-btn-sm {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1.5px solid #d1d5db;
+  background: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.panel-btn-sm:hover:not(:disabled) {
+  border-color: var(--panel-dorado);
+  color: var(--panel-dorado);
+}
+
+.panel-btn-sm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.panel-btn-ia {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: #fff;
+}
+
+.panel-btn-ia:hover:not(:disabled) {
+  background: #2c5aa0;
+  border-color: #2c5aa0;
+  color: #fff;
+}
