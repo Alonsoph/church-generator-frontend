@@ -223,12 +223,11 @@ const data = await res.json();
       alert('Por favor selecciona un plan');
       return;
     }
-    if (!whatsapp) {
-      alert('Por favor confirma tu número de WhatsApp');
-      return;
-    }
-    if (!email || !email.trim()) {
-      alert('Por favor ingresa tu email de contacto');
+    const faltan = [];
+    if (!whatsapp) faltan.push('WhatsApp');
+    if (!email || !email.trim()) faltan.push('Email');
+    if (faltan.length > 0) {
+      alert('Por favor completa los siguientes campos: ' + faltan.join(', '));
       return;
     }
     setCargando(true);
