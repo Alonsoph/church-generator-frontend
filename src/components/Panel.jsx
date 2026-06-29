@@ -736,7 +736,12 @@ function Panel() {
 
         {seccionActiva && seccionActiva === 'galeria' && (
           <div>
-            <h2>[G] Galeria de Fotos</h2>
+            <h2>[G] Galería de Fotos</h2>
+            {secciones.find(s => s.slug === 'galeria' && !s.activa) && (
+              <div style={{ padding: '1rem', background: '#fef3c7', border: '1px solid #f59e0b', borderRadius: '8px', marginBottom: '1rem', color: '#92400e', fontSize: '0.9rem' }}>
+                Esta sección está oculta en tu web. Actívala desde el botón "Secciones" para que sea visible.
+              </div>
+            )}
             <p className="panel-fotos-counter">
               {galeriaFotos.length} fotos
               {limites && <> (maximo: {limites.fotos_limite})</>}
@@ -883,6 +888,12 @@ function Panel() {
                 >
                   {seccionActual.activa ? 'Visible' : 'Oculta'}
                 </button>
+              </div>
+            )}
+
+            {seccionActual && !seccionActual.activa && (
+              <div style={{ padding: '1rem', background: '#fef3c7', border: '1px solid #f59e0b', borderRadius: '8px', marginBottom: '1rem', color: '#92400e', fontSize: '0.9rem' }}>
+                Esta sección está oculta en tu web. Actívala desde el botón "Secciones" para que sea visible.
               </div>
             )}
 
