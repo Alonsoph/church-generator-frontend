@@ -196,6 +196,7 @@ useEffect(() => {
           funcionalidades_activas: funcs,
           preferencias_diseno: preferenciasDiseno,
           codigo_referencia: codigoReferencia,
+          plantilla: plantillaActual || 'reverente',
         }),
       });
 
@@ -243,6 +244,7 @@ const data = await res.json();
           sugerencias_cliente: sugerencias,
           plan_seleccionado: planSeleccionado,
           codigo_referencia: codigoReferencia,
+          plantilla: plantillaActual || 'reverente',
         }),
       });
       const data = await res.json();

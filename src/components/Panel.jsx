@@ -105,9 +105,7 @@ function Panel() {
       if (datosContenido.plantilla) setPlantillaActual(datosContenido.plantilla);
 
       setSecciones(datosSecciones.secciones || []);
-      if (datosSecciones.secciones?.length > 0) {
-        setSeccionActiva(datosSecciones.secciones[0].slug);
-      }
+      // No auto-seleccionar: mostrar selector de secciones al inicio
 
       setStats(datosStats);
       setDominio(datosDominio);
