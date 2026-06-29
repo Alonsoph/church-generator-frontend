@@ -228,7 +228,7 @@ function Panel() {
     }
     try {
       const res = await fetch(`${API_BASE}/secciones/toggle`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
