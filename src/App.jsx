@@ -227,6 +227,10 @@ const data = await res.json();
       alert('Por favor confirma tu número de WhatsApp');
       return;
     }
+    if (!email || !email.trim()) {
+      alert('Por favor ingresa tu email de contacto');
+      return;
+    }
     setCargando(true);
     try {
       const res = await fetch(`${API_BASE}/aprobar`, {

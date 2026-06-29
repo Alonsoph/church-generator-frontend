@@ -621,6 +621,13 @@ function Panel() {
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           <button
             className="panel-btn-logout"
+            onClick={() => setSeccionActiva(null)}
+            title="Administrar secciones"
+          >
+            Secciones
+          </button>
+          <button
+            className="panel-btn-logout"
             onClick={cargarPreview}
             disabled={cargando}
             title="Vista previa"

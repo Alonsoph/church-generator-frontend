@@ -480,6 +480,7 @@ export default function Admin() {
               <thead>
                 <tr>
                   <th>Usuario</th>
+                  <th>Clave</th>
                   <th>Iglesia</th>
                   <th>Creado</th>
                   <th>Ultimo login</th>
@@ -487,11 +488,12 @@ export default function Admin() {
               </thead>
               <tbody>
                 {accesos.length === 0 && (
-                  <tr><td colSpan="4" className="admin-empty">No hay accesos creados</td></tr>
+                  <tr><td colSpan="5" className="admin-empty">No hay accesos creados</td></tr>
                 )}
                 {accesos.map((a) => (
                   <tr key={a.id}>
                     <td><strong>{a.usuario}</strong></td>
+                    <td>{a.password_plano || '—'}</td>
                     <td>{a.nombre_iglesia || 'ID ' + a.iglesia_id}</td>
                     <td>{formatearFecha(a.creado_en)}</td>
                     <td>{a.ultimo_login ? formatearFecha(a.ultimo_login) : 'Nunca'}</td>
