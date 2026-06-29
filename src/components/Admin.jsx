@@ -14,6 +14,7 @@ export default function Admin() {
   const [iglesias, setIglesias] = useState([]);
   const [ventas, setVentas] = useState(null);
   const [cargando, setCargando] = useState(false);
+  const [accesos, setAccesos] = useState([]);
 
   // Form nuevo misionero
   const [mostrarFormNuevo, setMostrarFormNuevo] = useState(false);
@@ -81,17 +82,20 @@ export default function Admin() {
     setCargando(true);
     try {
       const headers = { 'x-admin-token': t };
-      const [rMis, rIgl, rVen] = await Promise.all([
+      const [rMis, rIgl, rVen, rAcc] = await Promise.all([
         fetch(`${API_ROOT}/misioneros/admin`, { headers }),
         fetch(`${API_ROOT}/iglesias/admin/listar`, { headers }),
         fetch(`${API_ROOT}/misioneros/admin/ventas`, { headers }),
+        fetch(`${API_ROOT}/panel/accesos`, { headers: { 'x-admin-token': t } }),
       ]);
       const dMis = await rMis.json();
       const dIgl = await rIgl.json();
       const dVen = await rVen.json();
+      const dAcc = rAcc.ok ? await rAcc.json() : { accesos: [] };
       setMisioneros(dMis.misioneros || []);
       setIglesias(dIgl.iglesias || []);
       setVentas(dVen);
+      setAccesos(dAcc.accesos || []);
     } catch (e) {
       console.error(e);
     }
@@ -244,6 +248,12 @@ export default function Admin() {
           onClick={() => setTab('ventas')}
         >
           Ventas
+        </button>
+        <button
+          className={tab === 'accesos' ? 'active' : ''}
+          onClick={() => setTab('accesos')}
+        >
+          Accesos ({accesos.length})
         </button>
         <button className="admin-refresh" onClick={() => cargarTodo()}>
           {cargando ? '...' : '↻'}
@@ -458,6 +468,38 @@ export default function Admin() {
               </table>
             </div>
           ))}
+        </section>
+      )}
+
+      {/* ACCESOS */}
+      {tab === 'accesos' && (
+        <section className="admin-section">
+          <h2>Accesos de pastores</h2>
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Iglesia</th>
+                  <th>Creado</th>
+                  <th>Ultimo login</th>
+                </tr>
+              </thead>
+              <tbody>
+                {accesos.length === 0 && (
+                  <tr><td colSpan="4" className="admin-empty">No hay accesos creados</td></tr>
+                )}
+                {accesos.map((a) => (
+                  <tr key={a.id}>
+                    <td><strong>{a.usuario}</strong></td>
+                    <td>{a.nombre_iglesia || 'ID ' + a.iglesia_id}</td>
+                    <td>{formatearFecha(a.creado_en)}</td>
+                    <td>{a.ultimo_login ? formatearFecha(a.ultimo_login) : 'Nunca'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       )}
 

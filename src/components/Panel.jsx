@@ -24,9 +24,9 @@ const NOMBRES_SECCIONES = {
   predicaciones: 'Predicaciones',
   eventos: 'Eventos',
   ministerios: 'Ministerios',
-  galeria: 'Galeria',
-  transmision: 'Transmision',
-  ubicacion: 'Ubicacion',
+  galeria: 'Galería',
+  transmision: 'Transmisión',
+  ubicacion: 'Ubicación',
   contacto: 'Contacto',
   donaciones: 'Donaciones',
 };
@@ -34,6 +34,7 @@ const NOMBRES_SECCIONES = {
 function Panel() {
   const [usuario, setUsuario] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('panel_token') || '');
   const [logueado, setLogueado] = useState(false);
   const [cargando, setCargando] = useState(false);
@@ -89,7 +90,7 @@ function Panel() {
       ]);
 
       if (contenidoRes.status === 401 || seccionesRes.status === 401) {
-        cerrarSesion('Sesion expirada. Inicia sesion nuevamente.');
+        cerrarSesion('Sesión expirada. Inicia sesión nuevamente.');
         return;
       }
 
@@ -101,6 +102,7 @@ function Panel() {
       setContenido(datosContenido.contenido || {});
       setLimites(datosContenido.limites || null);
       setPlan(datosContenido.plan || 'fe');
+      if (datosContenido.plantilla) setPlantillaActual(datosContenido.plantilla);
 
       setSecciones(datosSecciones.secciones || []);
       if (datosSecciones.secciones?.length > 0) {
@@ -153,7 +155,7 @@ function Panel() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setErrorMsg(data.error || 'Error de autenticacion');
+        setErrorMsg(data.error || 'Error de autenticación');
         return;
       }
       localStorage.setItem('panel_token', data.token);
@@ -203,11 +205,11 @@ function Panel() {
         });
         if (res.status === 429) {
           const data = await res.json();
-          mostrarToast(data.error || 'Limite de ediciones alcanzado', 'error');
+          mostrarToast(data.error || 'Límite de ediciones alcanzado', 'error');
           return;
         }
         if (res.status === 401) {
-          cerrarSesion('Sesion expirada');
+          cerrarSesion('Sesión expirada');
           return;
         }
       } catch (err) {
@@ -223,7 +225,7 @@ function Panel() {
 
   async function toggleSeccion(slug, activa) {
     if (['hero', 'contacto'].includes(slug)) {
-      mostrarToast('Esta seccion no se puede desactivar', 'warning');
+      mostrarToast('Esta sección no se puede desactivar', 'warning');
       return;
     }
     try {
@@ -245,7 +247,7 @@ function Panel() {
       );
       mostrarToast(`Seccion ${!activa ? 'activada' : 'desactivada'}`, 'success');
     } catch {
-      mostrarToast('Error de conexion', 'error');
+      mostrarToast('Error de conexión', 'error');
     }
   }
 
@@ -268,7 +270,7 @@ function Panel() {
       });
       if (res.status === 429) {
         const data = await res.json();
-        mostrarToast(data.error || 'Limite de fotos alcanzado', 'error');
+        mostrarToast(data.error || 'Límite de fotos alcanzado', 'error');
         return;
       }
       if (!res.ok) {
@@ -290,7 +292,7 @@ function Panel() {
       }
       mostrarToast('Foto agregada', 'success');
     } catch {
-      mostrarToast('Error de conexion', 'error');
+      mostrarToast('Error de conexión', 'error');
     }
   }
 
@@ -317,7 +319,7 @@ function Panel() {
       }
       mostrarToast('Foto eliminada', 'success');
     } catch {
-      mostrarToast('Error de conexion', 'error');
+      mostrarToast('Error de conexión', 'error');
     }
   }
 
@@ -335,7 +337,7 @@ function Panel() {
       setPreviewHtml(html);
       setMostrarPreview(true);
     } catch {
-      mostrarToast('Error de conexion', 'error');
+      mostrarToast('Error de conexión', 'error');
     } finally {
       setCargando(false);
     }
@@ -389,7 +391,7 @@ function Panel() {
       const data = await res.json();
       handleCampoChange(seccionActiva, clave, data.url);
       mostrarToast('Imagen subida', 'success');
-    } catch { mostrarToast('Error de conexion', 'error'); }
+    } catch { mostrarToast('Error de conexión', 'error'); }
     finally { setSubiendoImg(false); e.target.value = ''; }
   }
 
@@ -408,7 +410,7 @@ function Panel() {
       const data = await res.json();
       handleCampoChange(seccionActiva, clave, data.url);
       mostrarToast('Imagen generada', 'success');
-    } catch { mostrarToast('Error de conexion', 'error'); }
+    } catch { mostrarToast('Error de conexión', 'error'); }
     finally { setGenerandoImg(false); }
   }
 
@@ -532,14 +534,36 @@ function Panel() {
               />
             </label>
             <label>
-              Contrasena
-              <input
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="********"
-                autoComplete="current-password"
-              />
+              Contraseña
+              <div style={{ position: 'relative' }}>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="********"
+                  autoComplete="current-password"
+                  style={{ paddingRight: '3rem' }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(prev => {return !prev})}
+                  style={{
+                    position: 'absolute',
+                    right: '0.5rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                    color: '#64748b',
+                    padding: '0.25rem',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {showPassword ? 'Ocultar' : 'Ver'}
+                </button>
+              </div>
             </label>
 
             {errorMsg && (
@@ -558,7 +582,7 @@ function Panel() {
           </form>
 
           <div className="panel-login-help">
-            <p>No tienes acceso? <a href="https://wa.me/56967236881" target="_blank" rel="noopener noreferrer">Contactanos por WhatsApp</a></p>
+            <p>¿No tienes acceso? <a href="https://wa.me/56967236881" target="_blank" rel="noopener noreferrer">Contáctanos por WhatsApp</a></p>
           </div>
         </div>
       </div>
@@ -652,9 +676,55 @@ function Panel() {
       <main className="panel-editor">
         {!seccionActiva && (
           <div className="panel-welcome">
-            <p>Selecciona una seccion del menu para editar su contenido.</p>
-            <p className="panel-welcome-hint">
-              Los cambios se guardan automaticamente mientras escribes.
+            <h2 style={{ marginBottom: '0.5rem' }}>Administrar secciones</h2>
+            <p style={{ color: '#64748b', marginBottom: '1rem' }}>
+              Tu plan permite <strong>{limites?.secciones_limite || '?'}</strong> secciones activas.
+              Activas: <strong>{secciones.filter(s => s.activa).length}</strong>
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {secciones.map(sec => {
+                const obligatoria = ['hero', 'contacto'].includes(sec.slug);
+                return (
+                  <div key={sec.slug} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0.6rem 1rem',
+                    background: sec.activa ? '#f0fdf4' : '#f8fafc',
+                    border: sec.activa ? '1px solid #bbf7d0' : '1px solid #e2e8f0',
+                    borderRadius: '8px',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span>{ICONOS[sec.slug] || '[-]'}</span>
+                      <span style={{ fontWeight: 500 }}>{NOMBRES_SECCIONES[sec.slug] || sec.slug}</span>
+                      {obligatoria && <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>(obligatoria)</span>}
+                    </div>
+                    {obligatoria ? (
+                      <span style={{ fontSize: '0.8rem', color: '#059669', fontWeight: 600 }}>Siempre visible</span>
+                    ) : (
+                      <button
+                        onClick={() => toggleSeccion(sec.slug, sec.activa)}
+                        style={{
+                          padding: '0.25rem 0.75rem',
+                          borderRadius: '6px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontWeight: 600,
+                          fontSize: '0.8rem',
+                          background: sec.activa ? '#059669' : '#94a3b8',
+                          color: '#fff',
+                          fontFamily: 'inherit',
+                        }}
+                      >
+                        {sec.activa ? 'Visible' : 'Oculta'}
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <p className="panel-welcome-hint" style={{ marginTop: '1rem' }}>
+              Selecciona una sección del menú lateral para editar su contenido.
             </p>
           </div>
         )}
@@ -675,7 +745,7 @@ function Panel() {
               border: '1px solid #e2e8f0',
             }}>
               <div className="panel-campo">
-                <label className="panel-campo-label">Descripcion (opcional)</label>
+                <label className="panel-campo-label">Descripción (opcional)</label>
                 <input
                   type="text"
                   value={nuevaFotoDesc}
@@ -719,7 +789,7 @@ function Panel() {
                       setNuevaFotoDesc('');
                       if (limites) setLimites(prev => ({ ...prev, fotos_usadas: data2.fotos_usadas || prev.fotos_usadas + 1 }));
                       mostrarToast('Foto agregada', 'success');
-                    } catch { mostrarToast('Error de conexion', 'error'); }
+                    } catch { mostrarToast('Error de conexión', 'error'); }
                     finally { setSubiendoImg(false); e.target.value = ''; }
                   }}
                 />
@@ -728,7 +798,7 @@ function Panel() {
 
             {galeriaFotos.length === 0 ? (
               <div className="panel-empty">
-                No hay fotos en tu galeria. Agrega URLs de imagenes arriba.
+                No hay fotos en tu galería. Agrega URLs de imágenes arriba.
               </div>
             ) : (
               <div className="panel-galeria-grid">
@@ -827,7 +897,7 @@ function Panel() {
                 color: '#94a3b8',
                 textAlign: 'center',
               }}>
-                [i] Los campos se guardan automaticamente mientras escribes
+                [i] Los campos se guardan automáticamente mientras escribes
               </p>
             </div>
           </div>
