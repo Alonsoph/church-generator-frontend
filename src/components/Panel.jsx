@@ -128,8 +128,8 @@ function Panel() {
 
       if (datosContenido.plan) {
         const plantillasPorPlan = {
-          fe: ['reverente'],
-          mision: ['reverente', 'contemporanea', 'acogedora'],
+          fe: ['reverente', 'contemporanea', 'acogedora', 'catedral', 'transmision', 'mision', 'plaza'],
+          mision: ['reverente', 'contemporanea', 'acogedora', 'catedral', 'transmision', 'mision', 'plaza'],
           impacto: ['reverente', 'contemporanea', 'acogedora', 'catedral', 'transmision', 'mision', 'plaza'],
         };
         setPlantillasDisponibles(plantillasPorPlan[datosContenido.plan] || ['reverente']);
