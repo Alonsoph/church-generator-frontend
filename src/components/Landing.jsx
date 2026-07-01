@@ -1,18 +1,49 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Landing.css';
+
+const DEMO_URL = 'https://church-generator-api-production.up.railway.app/api/iglesias/web/34'\;
 
 function Landing({ onComenzar }) {
   const WHATSAPP = '+56967236881';
   const whatsappLink = `https://wa.me/${WHATSAPP.replace(/[^0-9]/g, '')}`;
+  const [mostrarDemo, setMostrarDemo] = useState(false);
+  const [faqAbierta, setFaqAbierta] = useState(null);
 
   useEffect(() => {
     const flecha = document.querySelector('.landing-flecha-abajo');
-    if (!flecha) return;
+    if (flecha === null) return;
     const interval = setInterval(() => {
       flecha.classList.toggle('rebote');
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const FAQS = [
+    {
+      p: '¿Necesito saber de computación para tener mi web?',
+      r: 'No. Tú solo nos cuentas sobre tu iglesia en un formulario simple. Nosotros nos encargamos de todo lo técnico: dominio, hosting, diseño y publicación.'
+    },
+    {
+      p: '¿Cuánto demora en estar lista mi web?',
+      r: 'La vista previa la ves en segundos. Una vez que apruebas y pagas, tu web queda publicada en menos de 24 horas.'
+    },
+    {
+      p: '¿Puedo actualizar el contenido después?',
+      r: 'Sí. Cada plan incluye un panel de administración donde tú mismo puedes cambiar horarios, fotos, predicaciones y más, sin conocimientos técnicos.'
+    },
+    {
+      p: '¿El dominio .cl queda a nombre de la iglesia?',
+      r: 'Sí. En los planes Misión e Impacto, el dominio se registra para tu iglesia y es tuyo.'
+    },
+    {
+      p: '¿Qué pasa si quiero cancelar?',
+      r: 'Puedes cancelar cuando quieras. No hay contratos de permanencia ni multas.'
+    },
+    {
+      p: '¿A dónde va el dinero de mi pago?',
+      r: 'Somos misioneros. Los ingresos de TuWebIglesia sostienen nuestro trabajo en el campo misionero. Tu pago es inversión directa en la expansión del Reino.'
+    },
+  ];
 
   return (
     <div className="landing">
@@ -22,21 +53,27 @@ function Landing({ onComenzar }) {
           <div className="landing-logo">TuWebIglesia</div>
           <div className="landing-nav-links">
             <a href="#como-funciona">Cómo funciona</a>
+            <a href="#demo">Ejemplo real</a>
             <a href="#planes">Planes</a>
             <a href="#nosotros">Nosotros</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#faq">Preguntas</a>
           </div>
         </nav>
 
         <div className="landing-hero-content">
-          <h1>Tu iglesia merece estar en línea</h1>
+          <h1>Tu iglesia ya cambia vidas. Que el mundo lo sepa.</h1>
           <p className="landing-subtitle">
             Creamos webs profesionales para iglesias evangélicas en menos de 24 horas.
             Sin complicaciones técnicas, sin contratos largos.
           </p>
-          <button className="landing-btn-primary" onClick={onComenzar}>
-            Crear mi web ahora
-          </button>
+          <div className="landing-hero-botones">
+            <button className="landing-btn-primary" onClick={onComenzar}>
+              Crear mi web ahora
+            </button>
+            <button className="landing-btn-ghost" onClick={() => setMostrarDemo(true)}>
+              Ver ejemplo real
+            </button>
+          </div>
           <p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
         </div>
 
@@ -61,8 +98,8 @@ function Landing({ onComenzar }) {
           </div>
           <div className="landing-paso">
             <div className="landing-paso-numero">2</div>
-            <h3>Mira tu web al instante</h3>
-            <p>Nuestra IA genera una vista previa profesional en segundos. Pídenos cambios si quieres.</p>
+            <h3>La IA diseña tu web en segundos</h3>
+            <p>Mira la vista previa al instante y elige entre 7 estilos visuales el que más te guste.</p>
           </div>
           <div className="landing-paso">
             <div className="landing-paso-numero">3</div>
@@ -72,17 +109,41 @@ function Landing({ onComenzar }) {
         </div>
       </section>
 
+      {/* DEMO REAL */}
+      <section id="demo" className="landing-section landing-section-claro">
+        <h2>Así se ve una iglesia real con TuWebIglesia</h2>
+        <p className="landing-section-sub">
+          Casa de Dios, Alto Hospicio — web creada y administrada con nuestra plataforma
+        </p>
+        <div className="landing-demo-frame-wrap">
+          <iframe
+            src={DEMO_URL}
+            title="Web de ejemplo: Casa de Dios Alto Hospicio"
+            className="landing-demo-frame"
+            loading="lazy"
+          />
+        </div>
+        <div className="landing-demo-acciones">
+          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="landing-btn-secondary landing-btn-inline">
+            Abrir en pestaña nueva
+          </a>
+          <button className="landing-btn-primary" onClick={onComenzar}>
+            Quiero una así para mi iglesia
+          </button>
+        </div>
+      </section>
+
       {/* PLANES */}
-      <section id="planes" className="landing-section landing-section-claro">
+      <section id="planes" className="landing-section">
         <h2>Planes pensados para iglesias</h2>
         <p className="landing-section-sub">Elige el que mejor se ajusta a tu comunidad</p>
-        <p className="landing-section-nota">Todos incluyen hosting · Pago mensual · Cancela cuando quieras</p>
+        <p className="landing-section-nota">Todos incluyen hosting · Cancela cuando quieras</p>
 
         <div className="landing-planes">
           <div className="landing-plan">
             <h3>Fe</h3>
-            <div className="landing-precio">$50.000</div>
-            <div className="landing-precio-mes">+ $12.000/mes</div>
+            <div className="landing-precio">$12.000<span className="landing-precio-unidad">/mes</span></div>
+            <div className="landing-precio-mes">Pago inicial único: $50.000</div>
             <ul>
               <li>Hasta 5 secciones</li>
               <li>Subdominio en tuwebiglesia.cl</li>
@@ -97,8 +158,8 @@ function Landing({ onComenzar }) {
           <div className="landing-plan landing-plan-destacado">
             <div className="landing-badge">Más popular</div>
             <h3>Misión</h3>
-            <div className="landing-precio">$80.000</div>
-            <div className="landing-precio-mes">+ $19.000/mes</div>
+            <div className="landing-precio">$19.000<span className="landing-precio-unidad">/mes</span></div>
+            <div className="landing-precio-mes">Pago inicial único: $80.000</div>
             <ul>
               <li>Hasta 8 secciones</li>
               <li>Dominio .cl propio</li>
@@ -112,8 +173,8 @@ function Landing({ onComenzar }) {
 
           <div className="landing-plan">
             <h3>Impacto</h3>
-            <div className="landing-precio">$100.000</div>
-            <div className="landing-precio-mes">+ $29.000/mes</div>
+            <div className="landing-precio">$29.000<span className="landing-precio-unidad">/mes</span></div>
+            <div className="landing-precio-mes">Pago inicial único: $100.000</div>
             <ul>
               <li>Las 11 secciones</li>
               <li>Dominio propio</li>
@@ -124,6 +185,21 @@ function Landing({ onComenzar }) {
             </ul>
             <button className="landing-btn-secondary" onClick={onComenzar}>Elegir Impacto</button>
           </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIO */}
+      <section className="landing-section landing-section-claro">
+        <h2>Pastores que ya están en línea</h2>
+        <div className="landing-testimonio">
+          <p className="landing-testimonio-texto">
+            «Nuestra iglesia necesitaba presencia en internet y no sabíamos por dónde empezar.
+            Con TuWebIglesia tuvimos nuestra página lista en un día, y hoy nosotros mismos
+            actualizamos las predicaciones y los horarios desde el panel.»
+          </p>
+          <p className="landing-testimonio-autor">
+            Pastor Ronald · Casa de Dios, Alto Hospicio
+          </p>
         </div>
       </section>
 
@@ -147,10 +223,31 @@ function Landing({ onComenzar }) {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section id="faq" className="landing-section">
+        <h2>Preguntas frecuentes</h2>
+        <p className="landing-section-sub">Lo que los pastores nos preguntan antes de empezar</p>
+        <div className="landing-faq">
+          {FAQS.map((f, i) => (
+            <div
+              key={i}
+              className={`landing-faq-item ${faqAbierta === i ? 'abierta' : ''}`}
+              onClick={() => setFaqAbierta(faqAbierta === i ? null : i)}
+            >
+              <div className="landing-faq-pregunta">
+                <span>{f.p}</span>
+                <span className="landing-faq-icono">{faqAbierta === i ? '−' : '+'}</span>
+              </div>
+              {faqAbierta === i && <p className="landing-faq-respuesta">{f.r}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* CTA FINAL */}
       <section className="landing-section landing-cta-final">
         <h2>¿Listo para llevar tu iglesia en línea?</h2>
-        <p>Empieza gratis y mira cómo se vería tu web en segundos.</p>
+        <p>Empieza gratis y mira cómo se vería tu web en segundos. Publicada en 24 horas.</p>
         <button className="landing-btn-primary" onClick={onComenzar}>
           Crear mi web ahora
         </button>
@@ -169,6 +266,17 @@ function Landing({ onComenzar }) {
           </p>
         </div>
       </footer>
+
+      {/* MODAL DEMO */}
+      {mostrarDemo && (
+        <div className="landing-modal-demo" onClick={() => setMostrarDemo(false)}>
+          <div className="landing-modal-demo-barra">
+            <span>Web real: Casa de Dios, Alto Hospicio</span>
+            <button onClick={() => setMostrarDemo(false)}>✕ Cerrar</button>
+          </div>
+          <iframe src={DEMO_URL} title="Demo Casa de Dios" className="landing-modal-demo-iframe" />
+        </div>
+      )}
     </div>
   );
 }
