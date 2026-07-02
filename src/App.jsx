@@ -442,6 +442,48 @@ if (paso === 0) {
                 >
                   Plaza
                 </button>
+                <button 
+                  className={plantillaActual === 'alianza' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('alianza')}
+                  disabled={cargando}
+                >
+                  Alianza
+                </button>
+                <button 
+                  className={plantillaActual === 'piedra' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('piedra')}
+                  disabled={cargando}
+                >
+                  Piedra
+                </button>
+                <button 
+                  className={plantillaActual === 'cima' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('cima')}
+                  disabled={cargando}
+                >
+                  Cima
+                </button>
+                <button 
+                  className={plantillaActual === 'presencia' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('presencia')}
+                  disabled={cargando}
+                >
+                  Presencia
+                </button>
+                <button 
+                  className={plantillaActual === 'vision' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('vision')}
+                  disabled={cargando}
+                >
+                  Visión
+                </button>
+                <button 
+                  className={plantillaActual === 'faro' ? 'btn-estilo activo' : 'btn-estilo'}
+                  onClick={() => cambiarEstilo('faro')}
+                  disabled={cargando}
+                >
+                  Faro
+                </button>
               </div>
             </div>
 
