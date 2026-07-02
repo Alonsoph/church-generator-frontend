@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Landing.css';
 
-const DEMO_URL = 'https://church-generator-api-production.up.railway.app/api/iglesias/web/34'\;
+const DEMO_URL = 'https://church-generator-api-production.up.railway.app/api/iglesias/web/46';
 
 function Landing({ onComenzar }) {
   const WHATSAPP = '+56967236881';
@@ -53,7 +53,7 @@ function Landing({ onComenzar }) {
           <div className="landing-logo">TuWebIglesia</div>
           <div className="landing-nav-links">
             <a href="#como-funciona">Cómo funciona</a>
-            <a href="#demo">Ejemplo real</a>
+            <a href="#demo">Demo</a>
             <a href="#planes">Planes</a>
             <a href="#nosotros">Nosotros</a>
             <a href="#faq">Preguntas</a>
@@ -71,7 +71,7 @@ function Landing({ onComenzar }) {
               Crear mi web ahora
             </button>
             <button className="landing-btn-ghost" onClick={() => setMostrarDemo(true)}>
-              Ver ejemplo real
+              Ver una demo
             </button>
           </div>
           <p className="landing-hero-nota">Empieza gratis · Mira tu vista previa en segundos</p>
@@ -109,16 +109,16 @@ function Landing({ onComenzar }) {
         </div>
       </section>
 
-      {/* DEMO REAL */}
+      {/* DEMO */}
       <section id="demo" className="landing-section landing-section-claro">
-        <h2>Así se ve una iglesia real con TuWebIglesia</h2>
+        <h2>Así se ve una web creada con nuestra plataforma</h2>
         <p className="landing-section-sub">
-          Casa de Dios, Alto Hospicio — web creada y administrada con nuestra plataforma
+          Ejemplo generado con TuWebIglesia — la tuya se vería así con los datos de tu congregación
         </p>
         <div className="landing-demo-frame-wrap">
           <iframe
             src={DEMO_URL}
-            title="Web de ejemplo: Casa de Dios Alto Hospicio"
+            title="Web de demostración creada con TuWebIglesia"
             className="landing-demo-frame"
             loading="lazy"
           />
@@ -185,21 +185,6 @@ function Landing({ onComenzar }) {
             </ul>
             <button className="landing-btn-secondary" onClick={onComenzar}>Elegir Impacto</button>
           </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIO */}
-      <section className="landing-section landing-section-claro">
-        <h2>Pastores que ya están en línea</h2>
-        <div className="landing-testimonio">
-          <p className="landing-testimonio-texto">
-            «Nuestra iglesia necesitaba presencia en internet y no sabíamos por dónde empezar.
-            Con TuWebIglesia tuvimos nuestra página lista en un día, y hoy nosotros mismos
-            actualizamos las predicaciones y los horarios desde el panel.»
-          </p>
-          <p className="landing-testimonio-autor">
-            Pastor Ronald · Casa de Dios, Alto Hospicio
-          </p>
         </div>
       </section>
 
@@ -271,10 +256,10 @@ function Landing({ onComenzar }) {
       {mostrarDemo && (
         <div className="landing-modal-demo" onClick={() => setMostrarDemo(false)}>
           <div className="landing-modal-demo-barra">
-            <span>Web real: Casa de Dios, Alto Hospicio</span>
+            <span>Web de demostración — TuWebIglesia</span>
             <button onClick={() => setMostrarDemo(false)}>✕ Cerrar</button>
           </div>
-          <iframe src={DEMO_URL} title="Demo Casa de Dios" className="landing-modal-demo-iframe" />
+          <iframe src={DEMO_URL} title="Demo TuWebIglesia" className="landing-modal-demo-iframe" />
         </div>
       )}
     </div>
